@@ -15,6 +15,23 @@
 #import "UIViewController+Utils.h"
 #import "AddTaskViewController.h"
 #import "MMANavViewController.h"
+#import "TaskModel.h"
+
+//TaskModel* model1=[[taskModel alloc]init];
+//model1.pdepartment=@"信息科";
+//model1.gname=@{@"gname":@[@"鼠标",@"键盘"]};
+//model1.sname=@"李四";
+//model1.abegintime=@"2016-1-21";
+//model1.ginspectioncycle=@(10);
+//model1.aendtime=@"2016-1-31";
+//
+//TaskModel* model2=[[taskModel alloc]init];
+//model2.pdepartment=@"住院科";
+//model2.gname=@{@"gname":@[@"键盘"]};
+//model2.sname=@"张三";
+//model2.abegintime=@"2016-1-19";
+//model2.ginspectioncycle=@(3);
+//model2.aendtime=@"2016-1-25";
 
 @interface TaskListViewController ()
 

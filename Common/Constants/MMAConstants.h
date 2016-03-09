@@ -20,7 +20,7 @@
 #define RELEASE_ITEM_NAME @"任务下达"
 #define CHECK_ITEM_NAME @"盘点任务"
 #define UPLOAD_ITEM_NAME @"任务上传"
-#define RECORD_ITEM_NAME @"盘点任务"
+#define RECORD_ITEM_NAME @"盘点历史"
 #define ASSET_ITEM_NAME @"模糊资产"
 #define TRANSFER_ITEM_NAME @"资产调拨"
 
@@ -31,15 +31,6 @@
 #define RECORD_ITEM_IMAGE_NAME @"materials_list_record"
 #define ASSET_ITEM_IMAGE_NAME @"materials_list_asset"
 #define TRANSFER_ITEM_IMAGE_NAME @"materials_list_transfer"
-
-//user section info
-typedef NS_ENUM(NSInteger, SettingSectionInfo) {
-    SettingSectionInfoAccount,
-    SettingSectionInfoNotification,
-    SettingSectionInfoAbout,
-    SettingSectionInfoCache,
-    SettingSectionInfoSignOut,
-};
 
 //user setting name
 #define USER_SETTING_SECTION_ACCOUNT @"个人信息"
@@ -52,6 +43,11 @@ typedef NS_ENUM(NSInteger, SettingSectionInfo) {
 extern NSString *const kMMAAccountDidSignInNotification;
 extern NSString *const kMMAAccountDidSignOutNotification;
 extern NSString *const kMMANavigationControllerDidDismissedNotification;
+
+extern NSString *const kTTSettingsServerDateFormat;
+extern NSString *const kTTServerDateFormat;
+extern NSString *const kTTNewServerDateFormat;
+
 @interface MMAConstants : NSObject
 
 @end

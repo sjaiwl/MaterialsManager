@@ -10,9 +10,6 @@
 
 @interface UIColor (Hex)
 
-//+ (instancetype)colorWithHex:(unsigned int)hex;
-//+ (instancetype)colorWithHex:(unsigned int)hex alpha:(CGFloat)alpha;
-
 + (instancetype)colorWithHexString:(NSString *)hexString;
 + (instancetype)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 

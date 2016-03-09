@@ -25,7 +25,7 @@ NSString *const MaterialsCollectionViewCellIdentifier = @"MaterialsCollectionVie
 
 - (void)awakeFromNib {
     // Initialization code
-    self.backgroundColor = MMA_BLUE_LIGHT;
+    self.backgroundColor = MMA_GRAY_LIGHT;
     self.layer.borderWidth = 0.6;
     self.layer.borderColor = MMA_BLACK_LIGHT.CGColor;
     self.cornerRadius_MMA = 5;

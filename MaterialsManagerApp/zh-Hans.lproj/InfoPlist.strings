@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  TickTick
+
+  Created by 猪登登 on 15/3/13.
+  Copyright (c) 2015年 Appest Limited. All rights reserved.
+*/
+
+CFBundleDisplayName = "物资管理";

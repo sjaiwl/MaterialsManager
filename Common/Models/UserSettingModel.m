@@ -8,6 +8,7 @@
 
 #import "UserSettingModel.h"
 #import "MMAConstants.h"
+#import "MMAEnum.h"
 
 @implementation UserSettingModel
 

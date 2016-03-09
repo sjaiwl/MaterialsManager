@@ -8,6 +8,7 @@
 
 #import "UserCenterViewController.h"
 #import "MMAConstants.h"
+#import "MMAEnum.h"
 #import "UserSettingViewModel.h"
 #import "UserSettingModel.h"
 #import "SDImageCache.h"
@@ -82,7 +83,6 @@ static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResue
     NSArray *array = self.settingModelDictionary[@(section)];
     return array.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMMAUserCenterCellReuseIdentifier forIndexPath:indexPath];

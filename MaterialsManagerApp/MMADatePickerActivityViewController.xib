@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MMADatePickerActivityViewController">
+            <connections>
+                <outlet property="cancelButton" destination="kxX-n3-EzJ" id="BNB-AK-VWf"/>
+                <outlet property="datePicker" destination="KTM-GH-tvK" id="RMt-pn-PbE"/>
+                <outlet property="doneButton" destination="Dwl-yX-bhI" id="AF4-CK-noE"/>
+                <outlet property="titleLabel" destination="er0-nd-kZR" id="Psr-F8-r29"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KTM-GH-tvK">
+                    <rect key="frame" x="0.0" y="34" width="600" height="216"/>
+                    <date key="date" timeIntervalSinceReferenceDate="479193668.29947698">
+                        <!--2016-03-09 05:21:08 +0000-->
+                    </date>
+                </datePicker>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxX-n3-EzJ">
+                    <rect key="frame" x="10" y="4" width="30" height="30"/>
+                    <state key="normal" title="取消"/>
+                    <connections>
+                        <action selector="cancelButtonAction:" destination="-1" eventType="touchUpInside" id="vB0-IS-8tO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwl-yX-bhI">
+                    <rect key="frame" x="560" y="4" width="30" height="30"/>
+                    <state key="normal" title="完成"/>
+                    <connections>
+                        <action selector="doneButtonAction:" destination="-1" eventType="touchUpInside" id="MkY-Gt-TPe"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="er0-nd-kZR">
+                    <rect key="frame" x="283" y="9" width="34" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="er0-nd-kZR" firstAttribute="centerY" secondItem="kxX-n3-EzJ" secondAttribute="centerY" id="1VN-il-YSe"/>
+                <constraint firstAttribute="trailing" secondItem="KTM-GH-tvK" secondAttribute="trailing" id="IES-Wf-8Gd"/>
+                <constraint firstItem="er0-nd-kZR" firstAttribute="centerY" secondItem="Dwl-yX-bhI" secondAttribute="centerY" id="Ihi-rV-HsR"/>
+                <constraint firstItem="KTM-GH-tvK" firstAttribute="top" secondItem="kxX-n3-EzJ" secondAttribute="bottom" id="LxU-aq-VxM"/>
+                <constraint firstItem="er0-nd-kZR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N1C-I9-egd"/>
+                <constraint firstItem="kxX-n3-EzJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="P4K-Vs-3oj"/>
+                <constraint firstAttribute="trailing" secondItem="Dwl-yX-bhI" secondAttribute="trailing" constant="10" id="PHE-VT-j4A"/>
+                <constraint firstItem="KTM-GH-tvK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QDh-9P-IWF"/>
+                <constraint firstAttribute="bottom" secondItem="KTM-GH-tvK" secondAttribute="bottom" id="ZGZ-Bb-FZG"/>
+                <constraint firstItem="KTM-GH-tvK" firstAttribute="top" secondItem="Dwl-yX-bhI" secondAttribute="bottom" id="jqx-ek-x9l"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

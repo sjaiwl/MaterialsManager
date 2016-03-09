@@ -10,6 +10,11 @@
 #import "MMAColors.h"
 #import "UIView+Utils.h"
 #import "UINavigationBar+Utils.h"
+#import "UIViewController+Utils.h"
+#import "MMASheetView.h"
+#import "MMADatePickerActivityViewController.h"
+#import "TTStringUtils.h"
+#import "TTDateUtils.h"
 
 @interface AddTaskViewController ()
 //label
@@ -24,6 +29,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectDateButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
+
+//sheet view
+@property (nonatomic, strong) MMASheetView *sheetView;
+@property (nonatomic, strong) MMADatePickerActivityViewController *actionActivityViewController;
 
 @end
 
@@ -112,7 +121,26 @@
 */
 
 #pragma mark - Button Action
+
+- (IBAction)selectDateAction:(UIButton *)sender {
+    __weak AddTaskViewController *weakSelf = self;
+    self.actionActivityViewController = [[MMADatePickerActivityViewController alloc] initWithCurrentDate:nil cancelHandle:^{
+        [weakSelf.sheetView dismiss];
+    } doneHandle:^(NSDate *selectedDate) {
+        [weakSelf.sheetView dismiss];
+        [weakSelf.selectDateButton setTitle:selectedDate.stringForTimeYYYYMMDD forState:UIControlStateNormal];
+        NSLog(@"%@",selectedDate);
+    }];
+    self.sheetView =
+    [[MMASheetView alloc]
+     initWithContentView:self.actionActivityViewController.view
+     contentSize:CGSizeMake(CGRectGetWidth(self.view.bounds), self.actionActivityViewController.heightForDisplay)
+     sheetType:TTSheetViewTypeBottom];
+    [self.sheetView show];
+}
+
 - (IBAction)doneAction:(UIButton *)sender {
+
 }
 
 - (IBAction)cancelAction:(UIButton *)sender {

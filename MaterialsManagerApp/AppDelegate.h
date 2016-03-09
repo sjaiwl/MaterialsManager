@@ -20,6 +20,10 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+//instance
++ (instancetype)getInstance;
+
+- (BOOL)currentWindowWidthIsCompactWidth;
 
 @end
 

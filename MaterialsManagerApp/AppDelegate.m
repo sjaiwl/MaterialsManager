@@ -7,9 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "MMAConstants.h"
+#import "MMAConfig.h"
+#import "WelcomeViewController.h"
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong) WelcomeViewController *welcomeViewController;
 @end
 
 @implementation AppDelegate
@@ -42,6 +46,22 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+#pragma mark - AppDelegate Instance
+
++ (instancetype)getInstance {
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+- (BOOL)currentWindowWidthIsCompactWidth {
+    if (TARGET_DEVICE_IPHONE) {
+        return YES;
+    }
+    if (TARGET_DEVICE_IPAD && SYSTEM_VERSION_IOS_9_0_AND_LATER) {
+        return self.welcomeViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact;
+    }
+    return NO;
 }
 
 #pragma mark - Core Data stack

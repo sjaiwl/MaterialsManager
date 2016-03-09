@@ -18,6 +18,9 @@
 #define MMA_RED_LIGHT [UIColor colorWithHexString:@"ca0814"]
 #define MMA_RED(a) [UIColor colorWithHexString:@"ff0000" alpha:a]
 
+#define MMA_GRAY_LIGHT [UIColor colorWithHexString:@"eceded"]
+#define MMA_GRAY(a) [UIColor colorWithHexString:@"212226" alpha:a]
+
 @interface MMAColors : NSObject
 
 @end

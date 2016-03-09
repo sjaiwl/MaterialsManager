@@ -34,6 +34,8 @@
 		C25668881C8C26D1009F370E /* MaterialsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25668861C8C26D1009F370E /* MaterialsCollectionViewCell.xib */; };
 		C25668941C8C49AB009F370E /* CategoryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25668931C8C49AB009F370E /* CategoryViewModel.m */; };
 		C25668971C8C4AE5009F370E /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25668961C8C4AE5009F370E /* CategoryModel.m */; };
+		C26066A21C907B1400F5A29C /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = C260669F1C907B1400F5A29C /* UIImageView+CornerRadius.m */; };
+		C26066A31C907B1400F5A29C /* ZYImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26066A11C907B1400F5A29C /* ZYImageView.m */; };
 		C26A0AD91C4B9A3D003AA7EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C26A0AD81C4B9A3D003AA7EF /* main.m */; };
 		C26A0ADC1C4B9A3D003AA7EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C26A0ADB1C4B9A3D003AA7EF /* AppDelegate.m */; };
 		C26A0ADF1C4B9A3D003AA7EF /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26A0ADE1C4B9A3D003AA7EF /* WelcomeViewController.m */; };
@@ -214,6 +216,10 @@
 		C25668931C8C49AB009F370E /* CategoryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewModel.m; sourceTree = "<group>"; };
 		C25668951C8C4AE5009F370E /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
 		C25668961C8C4AE5009F370E /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
+		C260669E1C907B1400F5A29C /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
+		C260669F1C907B1400F5A29C /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
+		C26066A01C907B1400F5A29C /* ZYImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageView.h; sourceTree = "<group>"; };
+		C26066A11C907B1400F5A29C /* ZYImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageView.m; sourceTree = "<group>"; };
 		C26A0AD41C4B9A3D003AA7EF /* MaterialsManagerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialsManagerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26A0AD81C4B9A3D003AA7EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C26A0ADA1C4B9A3D003AA7EF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -516,6 +522,7 @@
 		C25668891C8C2D4B009F370E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C260669D1C907AF200F5A29C /* CornerRadiusCategory */,
 				C274472A1C8D4EDF0027A515 /* Categories */,
 				C256688A1C8C2DA3009F370E /* UIUtils */,
 			);
@@ -542,6 +549,17 @@
 				C274472F1C8D5A490027A515 /* UserSettingViewModel.m */,
 			);
 			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		C260669D1C907AF200F5A29C /* CornerRadiusCategory */ = {
+			isa = PBXGroup;
+			children = (
+				C260669E1C907B1400F5A29C /* UIImageView+CornerRadius.h */,
+				C260669F1C907B1400F5A29C /* UIImageView+CornerRadius.m */,
+				C26066A01C907B1400F5A29C /* ZYImageView.h */,
+				C26066A11C907B1400F5A29C /* ZYImageView.m */,
+			);
+			name = CornerRadiusCategory;
 			sourceTree = "<group>";
 		};
 		C26A0ACB1C4B9A3D003AA7EF = {
@@ -1203,6 +1221,7 @@
 				C27447531C8DB3540027A515 /* AddTaskViewController.m in Sources */,
 				C28A0E081C8AFD4A0098614F /* AFURLSessionManager.m in Sources */,
 				C2CCF7B31C90702100F806CD /* NSObject+MJProperty.m in Sources */,
+				C26066A31C907B1400F5A29C /* ZYImageView.m in Sources */,
 				C2CCF7BA1C9071E800F806CD /* MMAModelTransfer.m in Sources */,
 				C28A0E321C8AFD4A0098614F /* UIImage+WebP.m in Sources */,
 				C225E9941C8BF7550045DF48 /* UIView+Utils.m in Sources */,
@@ -1241,6 +1260,7 @@
 				C2CCF78B1C8FFA4C00F806CD /* NSDate+TKCategory.m in Sources */,
 				C274474E1C8DAD160027A515 /* TaskDetailsTableViewCell.m in Sources */,
 				C256686F1C8C0F20009F370E /* View+MASAdditions.m in Sources */,
+				C26066A21C907B1400F5A29C /* UIImageView+CornerRadius.m in Sources */,
 				C256686A1C8C0F20009F370E /* MASLayoutConstraint.m in Sources */,
 				C26A0AD91C4B9A3D003AA7EF /* main.m in Sources */,
 				C25668701C8C0F20009F370E /* ViewController+MASAdditions.m in Sources */,

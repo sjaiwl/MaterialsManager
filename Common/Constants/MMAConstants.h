@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+//url
+#define SiteDomain @"http://project.lanou3g.com/teacher/yihuiyun/lanouproject"
+#define LoginUrl [SiteDomain stringByAppendingString:@"/activitylist.php"]
+
+
 //category item id
 #define COLLECTION_ITEM_APPEND_ID(x) [@"MMA_" stringByAppendingString:x]
 #define RELEASE_ITEM_ID COLLECTION_ITEM_APPEND_ID(@"RELEASE_ITEM_ID")
@@ -40,10 +45,11 @@
 #define USER_SETTING_SECTION_CACHE @"清除缓存"
 #define USER_SETTING_SECTION_SIGNOUT @"退出登录"
 
+//notification
 extern NSString *const kMMAAccountDidSignInNotification;
 extern NSString *const kMMAAccountDidSignOutNotification;
 extern NSString *const kMMANavigationControllerDidDismissedNotification;
-
+//date format
 extern NSString *const kTTSettingsServerDateFormat;
 extern NSString *const kTTServerDateFormat;
 extern NSString *const kTTNewServerDateFormat;

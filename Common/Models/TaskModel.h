@@ -1,21 +1,34 @@
 //
-//  taskModel.h
-//  实训－字典模型转换
+//  TaskModel.h
+//  MaterialsManagerApp
 //
-//  Created by 陈受恩 on 16/3/9.
-//  Copyright © 2016年 chenshouen. All rights reserved.
+//  Created by 王林 on 16/3/10.
+//  Copyright © 2016年 sjaiwl. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+//task model
+#import "TKJSONSerializedModel.h"
 
-@interface TaskModel : NSObject
-/**科室，任务也就是物资种类，盘点人(命名冲突)，任务开始时间，巡检周期，任务结束时间*/
-@property(nonatomic, copy) NSString* pdepartment;
-@property(nonatomic, copy) NSArray* gname;
-@property(nonatomic, copy) NSString* sname;
-@property(nonatomic, copy) NSString* abegintime;
-@property(nonatomic, strong) NSNumber* ginspectioncycle;
-@property(nonatomic, copy) NSString* aendtime;
-
+@interface TaskModel : TKJSONSerializedModel
+//任务id
+@property (nonatomic, strong) NSNumber *tid;
+//员工id
+@property (nonatomic, strong) NSNumber *staffid;
+//任务下达人id
+@property (nonatomic, strong) NSNumber *tassignsid;
+//物种id
+@property (nonatomic, strong) NSNumber *specialid;
+//任务类别
+@property (nonatomic, copy) NSString *ttype;
+//原计划时间
+@property (nonatomic, strong) NSDate *toriginaltime;
+//开始时间
+@property (nonatomic, strong) NSDate *tinspectionbegintime;
+//结束时间
+@property (nonatomic, strong) NSDate *tinspectionendtime;
+//修改时间
+@property (nonatomic, strong) NSDate *tmodifiedtime;
+//状态标识
+@property (nonatomic, copy) NSString *tstatus;
 
 @end

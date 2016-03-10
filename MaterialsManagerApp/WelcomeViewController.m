@@ -14,6 +14,9 @@
 #import "UIViewController+Utils.h"
 #import "MaterialsCollectionViewController.h"
 #import "MMANavViewController.h"
+#import "MMAAccountManager.h"
+#import "MMAConstants.h"
+#import "MBProgressHUD.h"
 
 @interface WelcomeViewController ()<UITextFieldDelegate>
 //app info
@@ -101,15 +104,55 @@
 }
 
 - (IBAction)loginButtonAction:(UIButton *)sender {
+    if ([self checkNameAndPassWord]) {
 
-    [self loginSuccess];
+    } else {
+        MBProgressHUD *mb = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        mb.mode = MBProgressHUDModeText;
+        mb.label.text = @"用户名或密码为空";
+        [mb hideAnimated:YES afterDelay:2];
+    }
+}
+
+#pragma mark - check text
+- (BOOL)checkNameAndPassWord{
+    if ([self.userNameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - login success
+- (void)loginBegin{
+    [self startLoginingState];
+}
 - (void)loginSuccess{
+    [self startLoginNormalState];
+
     MMANavViewController *nav = [[MMANavViewController alloc] initWithRootViewController:self.materialsCollectionViewController];
     self.materialsCollectionViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)loginFailed{
+    [self startLoginNormalState];
+}
+
+#pragma mark - button state
+- (void)startLoginNormalState{
+    self.loginButton.enabled = YES;
+    self.loginIndicator.hidden = YES;
+    if (self.loginIndicator.isAnimating) {
+        [self.loginIndicator stopAnimating];
+    }
+}
+
+- (void)startLoginingState{
+    self.loginButton.enabled = NO;
+    self.loginIndicator.hidden = NO;
+    if (!self.loginIndicator.isAnimating) {
+        [self.loginIndicator startAnimating];
+    }
 }
 
 #pragma Touch Event

@@ -27,6 +27,14 @@ typedef NS_ENUM(NSUInteger, TTWeekday) {
     TTWeekdaySaturday = 7
 };
 
+typedef NS_ENUM(NSUInteger, MMASignInResult) {
+    MMASignInResultSuccess = 0,
+    MMASignInResultWrongUsername = 1,
+    MMASignInResultWrongPassword = 2,
+    MMASignInResultOldClientVersion = 3,
+    MMASignInResultOtherError = 4
+};
+
 @interface MMAEnum : NSObject
 
 @end

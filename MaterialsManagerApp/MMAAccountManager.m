@@ -8,6 +8,9 @@
 
 #import "MMAAccountManager.h"
 #import "MMAConstants.h"
+#import "AccountModel.h"
+#import "MMAHTTPManager.h"
+#import "MMALogs.h"
 
 @implementation MMAAccountManager
 
@@ -20,6 +23,16 @@
         _sharedInstance = [[self alloc] init];
     });
     return _sharedInstance;
+}
+
+- (void)signInWithSiteUrl:(NSString *)siteUtl
+             AccountModel:(AccountModel *)accountModel
+        completionHandler:(MMASignInCompletionHandler)completionHandler{
+    [[MMAHTTPManager sharedManager] signInWithSiteUrl:siteUtl username:accountModel.saccount password:accountModel.spassword success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    }];
 }
 
 //sign in

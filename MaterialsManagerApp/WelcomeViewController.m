@@ -17,6 +17,7 @@
 #import "MMAAccountManager.h"
 #import "MMAConstants.h"
 #import "MBProgressHUD.h"
+#import "MMAPreferenceManager.h"
 
 @interface WelcomeViewController ()<UITextFieldDelegate>
 //app info
@@ -41,6 +42,9 @@
 @property (nonatomic, strong) MBProgressHUD *toastIndictorManager;
 @property (nonatomic, assign, getter=isIndictorShowing) BOOL indictorShowing;
 
+//preference
+@property (nonatomic, strong) MMAPreferenceManager *preferenceManager;
+
 @end
 
 @implementation WelcomeViewController
@@ -51,6 +55,13 @@
         _materialsCollectionViewController = [MaterialsCollectionViewController loadFromStoryboard];
     }
     return _materialsCollectionViewController;
+}
+
+- (MMAPreferenceManager *)preferenceManager{
+    if (!_preferenceManager) {
+        _preferenceManager = [MMAPreferenceManager sharedManager];
+    }
+    return _preferenceManager;
 }
 
 #pragma mark - override
@@ -74,18 +85,36 @@
 }
 
 - (void)setupTextFieldViews{
+    //set preference
+    [self setupPreferenceValue];
     //return type
     self.userNameField.returnKeyType = UIReturnKeyNext;
     self.passwordField.returnKeyType = UIReturnKeyDone;
     self.passwordField.secureTextEntry = YES;
-
     self.userNameField.delegate = self;
     self.passwordField.delegate = self;
+}
+
+- (void)setupPreferenceValue{
+    NSString *name = [self.preferenceManager getUserDefaultsForUserName];
+    NSString *password = [self.preferenceManager getUserDefaultsForUserPassword];
+    if (name) {
+        self.userNameField.text = name;
+    }
+    if (password && [self.preferenceManager getUserDefaultsForRememberPassword]) {
+        self.passwordField.text = password;
+    }
+}
+
+- (void)savePreferenceValue{
+    [self.preferenceManager setUserDefaultsForUserName:self.userNameField.text];
+    [self.preferenceManager setUserDefaultsForUserPassword:self.passwordField.text];
 }
 
 - (void)setupRememberPasswordViews{
     [self.rememberPasswordButton setImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
     [self.rememberPasswordButton setImage:[UIImage imageNamed:@"btn_checked"] forState:UIControlStateSelected];
+    self.rememberPasswordButton.selected = [self.preferenceManager getUserDefaultsForRememberPassword];
 }
 
 - (void)setupLoginButtonViews{
@@ -105,7 +134,7 @@
 #pragma mark - button action
 - (IBAction)rememberPasswordButtonAction:(UIButton *)sender {
     sender.selected = !sender.selected;
-    DLog(@"%d",sender.selected);
+    [self.preferenceManager setUserDefaultsForRememberPassword:sender.isSelected];
 }
 
 - (IBAction)loginButtonAction:(UIButton *)sender {
@@ -131,10 +160,10 @@
 - (void)loginBegin{
     [self endViewEditingMode];
     [self showToastWithIndicatorView];
+    [self savePreferenceValue];
 }
 - (void)loginSuccess{
     [self hideToastWithIndicatorView];
-
     MMANavViewController *nav = [[MMANavViewController alloc] initWithRootViewController:self.materialsCollectionViewController];
     self.materialsCollectionViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:nav animated:YES completion:nil];

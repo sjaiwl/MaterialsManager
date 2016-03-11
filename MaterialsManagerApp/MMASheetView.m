@@ -129,7 +129,7 @@ NSTimeInterval const TTSheetViewDismissDuration = 0.3;
 - (void)setupDimMaskViewIfNeedMask:(BOOL)needMask
 {
     if (needMask) {
-        self.dimMaskView.backgroundColor = MMA_GRAY(0.18);
+        self.dimMaskView.backgroundColor = MMA_GRAY(0.3);
     }
     else {
         self.dimMaskView.backgroundColor = [UIColor clearColor];

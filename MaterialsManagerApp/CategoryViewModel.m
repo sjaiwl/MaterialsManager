@@ -21,7 +21,7 @@
     return _sharedInstance;
 }
 //local model
-- (NSArray *)getCurrentCategoryFromeLocal{
+- (NSArray *)getCurrentCategoryFromLocal{
     CategoryModel *categoryRelease = [CategoryModel categoryRelease];
     CategoryModel *categoryCheck = [CategoryModel categoryCheck];
     CategoryModel *categoryUpload = [CategoryModel categoryUpload];

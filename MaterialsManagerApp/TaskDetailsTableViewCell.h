@@ -13,4 +13,6 @@ extern NSInteger const kMMTaskDetailsTableViewCellHeight;
 
 @interface TaskDetailsTableViewCell : UITableViewCell
 
+- (void)configCellWithDescribeString:(NSString *)describeString contentString:(NSString *)contentString;
+
 @end

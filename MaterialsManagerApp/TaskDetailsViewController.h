@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TaskModel;
 
 @interface TaskDetailsViewController : UITableViewController
+
+- (void)initWithTaskModel:(TaskModel *)taskModel;
 
 @end

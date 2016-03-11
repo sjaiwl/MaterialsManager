@@ -36,6 +36,8 @@
 		C24C5DBF1C9193AE007A4FAB /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DB51C9193AE007A4FAB /* AFURLResponseSerialization.m */; };
 		C24C5DC01C9193AE007A4FAB /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DB71C9193AE007A4FAB /* AFURLSessionManager.m */; };
 		C24C5DC31C91A6FF007A4FAB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DC21C91A6FF007A4FAB /* MBProgressHUD.m */; };
+		C24C5DC61C91C526007A4FAB /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DC51C91C526007A4FAB /* UIView+Toast.m */; };
+		C24C5DC91C92B362007A4FAB /* TaskListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DC81C92B362007A4FAB /* TaskListViewModel.m */; };
 		C256684C1C8C0E9F009F370E /* MMAFont.m in Sources */ = {isa = PBXBuildFile; fileRef = C256684B1C8C0E9F009F370E /* MMAFont.m */; };
 		C25668671C8C0F20009F370E /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C256684F1C8C0F20009F370E /* MASCompositeConstraint.m */; };
 		C25668681C8C0F20009F370E /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C25668521C8C0F20009F370E /* MASConstraint.m */; };
@@ -223,6 +225,10 @@
 		C24C5DB71C9193AE007A4FAB /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		C24C5DC11C91A6FF007A4FAB /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C24C5DC21C91A6FF007A4FAB /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		C24C5DC41C91C526007A4FAB /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		C24C5DC51C91C526007A4FAB /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		C24C5DC71C92B362007A4FAB /* TaskListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewModel.h; sourceTree = "<group>"; };
+		C24C5DC81C92B362007A4FAB /* TaskListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewModel.m; sourceTree = "<group>"; };
 		C256684A1C8C0E9F009F370E /* MMAFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAFont.h; sourceTree = "<group>"; };
 		C256684B1C8C0E9F009F370E /* MMAFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAFont.m; sourceTree = "<group>"; };
 		C256684E1C8C0F20009F370E /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -622,6 +628,8 @@
 				C25668931C8C49AB009F370E /* CategoryViewModel.m */,
 				C274472E1C8D5A490027A515 /* UserSettingViewModel.h */,
 				C274472F1C8D5A490027A515 /* UserSettingViewModel.m */,
+				C24C5DC71C92B362007A4FAB /* TaskListViewModel.h */,
+				C24C5DC81C92B362007A4FAB /* TaskListViewModel.m */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -710,6 +718,8 @@
 		C274472A1C8D4EDF0027A515 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				C24C5DC41C91C526007A4FAB /* UIView+Toast.h */,
+				C24C5DC51C91C526007A4FAB /* UIView+Toast.m */,
 				C225E9901C8BF7550045DF48 /* UIView+Utils.h */,
 				C225E9911C8BF7550045DF48 /* UIView+Utils.m */,
 				C225E9921C8BF7550045DF48 /* UIViewController+Utils.h */,
@@ -1290,6 +1300,7 @@
 				C28A0E261C8AFD4A0098614F /* MKAnnotationView+WebCache.m in Sources */,
 				C24C5DBF1C9193AE007A4FAB /* AFURLResponseSerialization.m in Sources */,
 				C2CCF76C1C8FDEF000F806CD /* MMASheetView.m in Sources */,
+				C24C5DC91C92B362007A4FAB /* TaskListViewModel.m in Sources */,
 				C26A0ADC1C4B9A3D003AA7EF /* AppDelegate.m in Sources */,
 				C24C5DBB1C9193AE007A4FAB /* AFNetworkReachabilityManager.m in Sources */,
 				C2CCF7881C8FFA2E00F806CD /* NSDateComponents+Utils.m in Sources */,
@@ -1317,6 +1328,7 @@
 				C28A0E341C8AFD4A0098614F /* UIImageView+WebCache.m in Sources */,
 				C2CCF7AF1C90702100F806CD /* MJPropertyType.m in Sources */,
 				C25668771C8C14D9009F370E /* UIImage+Utils.m in Sources */,
+				C24C5DC61C91C526007A4FAB /* UIView+Toast.m in Sources */,
 				C28A0E2B1C8AFD4A0098614F /* SDWebImageDownloader.m in Sources */,
 				C2D65FAE1C8B0050008BC07B /* NSArray+MTLManipulationAdditions.m in Sources */,
 				C25668681C8C0F20009F370E /* MASConstraint.m in Sources */,

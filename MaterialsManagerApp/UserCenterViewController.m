@@ -79,6 +79,14 @@ static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResue
     return self.settingModelDictionary.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 15;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSArray *array = self.settingModelDictionary[@(section)];
     return array.count;

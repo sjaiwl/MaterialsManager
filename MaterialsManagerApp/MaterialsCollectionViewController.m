@@ -60,7 +60,7 @@
 
 - (NSArray *)categoryModelArray{
     if (!_categoryModelArray) {
-        _categoryModelArray = [self.viewModel getCurrentCategoryFromeLocal];
+        _categoryModelArray = [self.viewModel getCurrentCategoryFromLocal];
     }
     return _categoryModelArray;
 }

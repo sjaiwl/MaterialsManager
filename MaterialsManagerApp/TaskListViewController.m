@@ -16,28 +16,50 @@
 #import "AddTaskViewController.h"
 #import "MMANavViewController.h"
 #import "TaskModel.h"
-
-//TaskModel* model1=[[taskModel alloc]init];
-//model1.pdepartment=@"信息科";
-//model1.gname=@{@"gname":@[@"鼠标",@"键盘"]};
-//model1.sname=@"李四";
-//model1.abegintime=@"2016-1-21";
-//model1.ginspectioncycle=@(10);
-//model1.aendtime=@"2016-1-31";
-//
-//TaskModel* model2=[[taskModel alloc]init];
-//model2.pdepartment=@"住院科";
-//model2.gname=@{@"gname":@[@"键盘"]};
-//model2.sname=@"张三";
-//model2.abegintime=@"2016-1-19";
-//model2.ginspectioncycle=@(3);
-//model2.aendtime=@"2016-1-25";
+#import "TaskListViewModel.h"
+#import "MMALogs.h"
 
 @interface TaskListViewController ()
+//details controller
+@property (nonatomic, strong) TaskDetailsViewController *taskDetailsController;
+//add task controller
+@property (nonatomic, strong) AddTaskViewController *addTaskController;
+
+@property (nonatomic, strong) TaskListViewModel *viewModel;
+@property (nonatomic, copy) NSArray *taskModelArray;
 
 @end
 
 @implementation TaskListViewController
+
+#pragma mark - Accessor
+- (TaskDetailsViewController *)taskDetailsController{
+    if (!_taskDetailsController) {
+        _taskDetailsController = [TaskDetailsViewController loadNib];
+    }
+    return _taskDetailsController;
+}
+
+- (AddTaskViewController *)addTaskController{
+    if (!_addTaskController) {
+        _addTaskController = [AddTaskViewController loadNib];
+    }
+    return _addTaskController;
+}
+
+- (TaskListViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [TaskListViewModel sharedViewModel];
+    }
+    return _viewModel;
+}
+
+- (NSArray *)taskModelArray{
+    if (!_taskModelArray) {
+        _taskModelArray = [self.viewModel getCurrentTaskModels];
+    }
+    return _taskModelArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,7 +101,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.taskModelArray.count;
 }
 
 //cell
@@ -90,9 +112,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMMATaskTableViewCellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     // Configure the cell...
-    
+    TaskModel *model = self.taskModelArray[indexPath.row];
+    [cell configCellWithTaskModel:model];
     return cell;
 }
 
@@ -118,11 +140,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    TaskDetailsViewController *detailsViewController = [TaskDetailsViewController loadNib];
+    TaskModel *model = self.taskModelArray[indexPath.row];
     // Pass the selected object to the new view controller.
-
+    [self.taskDetailsController initWithTaskModel:model];
+    
     // Push the view controller.
-    [self.navigationController pushViewController:detailsViewController animated:YES];
+    [self.navigationController pushViewController:self.taskDetailsController animated:YES];
 }
 
 
@@ -138,8 +161,7 @@
 
 #pragma mark - bar button action
 - (void)addTask:(UIBarButtonItem *)sender{
-    AddTaskViewController *addTaskViewController = [AddTaskViewController loadNib];
-    MMANavViewController *nav = [[MMANavViewController alloc] initWithRootViewController:addTaskViewController];
+    MMANavViewController *nav = [[MMANavViewController alloc] initWithRootViewController:self.addTaskController];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 

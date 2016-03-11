@@ -8,8 +8,13 @@
 
 #import "TaskDetailsViewController.h"
 #import "TaskDetailsTableViewCell.h"
+#import "TaskModel.h"
 
 @interface TaskDetailsViewController ()
+
+@property (nonatomic, strong) TaskModel *originModel;
+
+@property (nonatomic, strong) TaskModel *revisedTask;
 
 @end
 
@@ -45,6 +50,15 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TaskDetailsTableViewCell class]) bundle:nil] forCellReuseIdentifier:kMMATaskDetailsTableViewCellIdentifier];
 }
 
+#pragma mark - init method
+- (void)initWithTaskModel:(TaskModel *)taskModel{
+    self.originModel = taskModel;
+    self.revisedTask = taskModel.copy;
+
+
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -55,11 +69,45 @@
     return 6;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 15;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TaskDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMMATaskDetailsTableViewCellIdentifier forIndexPath:indexPath];
-    
     // Configure the cell...
+    switch (indexPath.row) {
+        case 0:
+            [cell configCellWithDescribeString:@"科室:" contentString:self.revisedTask.ttype];
+            break;
+
+        case 1:
+            [cell configCellWithDescribeString:@"任务:" contentString:self.revisedTask.ttype];
+            break;
+
+        case 2:
+            [cell configCellWithDescribeString:@"盘点人:" contentString:self.revisedTask.ttype];
+            break;
+
+        case 3:
+            [cell configCellWithDescribeString:@"任务开始时间:" contentString:self.revisedTask.ttype];
+            break;
+
+        case 4:
+            [cell configCellWithDescribeString:@"完成任务所需时间:" contentString:self.revisedTask.ttype];
+            break;
+
+        case 5:
+            [cell configCellWithDescribeString:@"下达任务周期:" contentString:self.revisedTask.ttype];
+            break;
+
+        default:
+            break;
+    }
     
     return cell;
 }

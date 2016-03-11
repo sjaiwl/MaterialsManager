@@ -10,6 +10,12 @@
 
 NSString *const kMMATaskDetailsTableViewCellIdentifier = @"kMMATaskDetailsTableViewCellIdentifier";
 NSInteger const kMMTaskDetailsTableViewCellHeight = 44;
+@interface TaskDetailsTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
+@property (weak, nonatomic) IBOutlet UITextField *contentField;
+
+@end
 
 @implementation TaskDetailsTableViewCell
 
@@ -21,6 +27,11 @@ NSInteger const kMMTaskDetailsTableViewCellHeight = 44;
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)configCellWithDescribeString:(NSString *)describeString contentString:(NSString *)contentString{
+    self.describeLabel.text = describeString;
+    self.contentField.text = contentString;
 }
 
 @end

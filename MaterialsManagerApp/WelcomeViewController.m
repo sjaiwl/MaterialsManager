@@ -34,14 +34,19 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loginIndicator;
 
+@property (assign, nonatomic, getter=isShowingActivity) BOOL showingActivity;
+
 @property (nonatomic, strong) MaterialsCollectionViewController *materialsCollectionViewController;
+
+@property (nonatomic, strong) MBProgressHUD *toastIndictorManager;
+@property (nonatomic, assign, getter=isIndictorShowing) BOOL indictorShowing;
 
 @end
 
 @implementation WelcomeViewController
 
 #pragma mark - private
--(MaterialsCollectionViewController *)materialsCollectionViewController{
+- (MaterialsCollectionViewController *)materialsCollectionViewController{
     if (!_materialsCollectionViewController) {
         _materialsCollectionViewController = [MaterialsCollectionViewController loadFromStoryboard];
     }
@@ -105,12 +110,12 @@
 
 - (IBAction)loginButtonAction:(UIButton *)sender {
     if ([self checkNameAndPassWord]) {
-
+        [self loginBegin];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self loginSuccess];
+        });
     } else {
-        MBProgressHUD *mb = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        mb.mode = MBProgressHUDModeText;
-        mb.label.text = @"用户名或密码为空";
-        [mb hideAnimated:YES afterDelay:2];
+        [self showToastWithMessage:@"用户名或密码为空"];
     }
 }
 
@@ -124,10 +129,11 @@
 
 #pragma mark - login success
 - (void)loginBegin{
-    [self startLoginingState];
+    [self endViewEditingMode];
+    [self showToastWithIndicatorView];
 }
 - (void)loginSuccess{
-    [self startLoginNormalState];
+    [self hideToastWithIndicatorView];
 
     MMANavViewController *nav = [[MMANavViewController alloc] initWithRootViewController:self.materialsCollectionViewController];
     self.materialsCollectionViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -135,7 +141,8 @@
 }
 
 - (void)loginFailed{
-    [self startLoginNormalState];
+    [self hideToastWithIndicatorView];
+    [self showToastWithMessage:@"登录失败"];
 }
 
 #pragma mark - button state
@@ -155,9 +162,37 @@
     }
 }
 
+#pragma mark - toast function
+- (void)showToastWithMessage:(NSString *)string{
+    MBProgressHUD *toast = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    toast.mode = MBProgressHUDModeText;
+    toast.label.text = string;
+    [toast hideAnimated:YES afterDelay:2];
+}
+
+- (void)showToastWithIndicatorView{
+    if (!self.isIndictorShowing) {
+        self.indictorShowing = YES;
+        self.toastIndictorManager = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.toastIndictorManager.mode = MBProgressHUDModeIndeterminate;
+    }
+}
+
+- (void)hideToastWithIndicatorView{
+    if (self.isIndictorShowing) {
+        self.indictorShowing = NO;
+        [self.toastIndictorManager hideAnimated:YES];
+    }
+}
+
+#pragma mark - end editing mode
+- (void)endViewEditingMode{
+    [self.view endEditing:YES];
+}
+
 #pragma Touch Event
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
+    [self endViewEditingMode];
 }
 
 #pragma mark - UITextFieldDelegate

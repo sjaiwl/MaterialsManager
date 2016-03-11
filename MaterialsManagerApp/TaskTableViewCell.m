@@ -9,6 +9,8 @@
 #import "TaskTableViewCell.h"
 #import "UIView+Utils.h"
 #import "MMAColors.h"
+#import "TaskModel.h"
+#import "MMALogs.h"
 
 NSString *const kMMATaskTableViewCellIdentifier = @"kMMATaskTableViewCellIdentifier";
 NSInteger const kMMATaskTableViewCellHeight = 200;
@@ -41,4 +43,8 @@ NSInteger const kMMATaskTableViewCellHeight = 200;
     // Configure the view for the selected state
 }
 
+#pragma mark - config
+- (void)configCellWithTaskModel:(TaskModel *)taskModel{
+    DLog(@"%@",taskModel);
+}
 @end

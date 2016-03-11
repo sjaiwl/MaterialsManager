@@ -1,18 +1,18 @@
 //
-//  CategoryViewModel.h
+//  TaskListViewModel.h
 //  MaterialsManagerApp
 //
-//  Created by 王林 on 16/3/6.
+//  Created by 王林 on 16/3/11.
 //  Copyright © 2016年 sjaiwl. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface CategoryViewModel : NSObject
+@interface TaskListViewModel : NSObject
 
 + (instancetype)sharedViewModel;
 
-//local model
-- (NSArray *)getCurrentCategoryFromLocal;
+//get current modele
+- (NSArray *)getCurrentTaskModels;
 
 @end

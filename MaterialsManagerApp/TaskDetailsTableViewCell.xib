@@ -34,6 +34,10 @@
                     <constraint firstItem="yr4-iN-lDi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wDQ-s6-0kp"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentField" destination="yr4-iN-lDi" id="c09-d1-Nwd"/>
+                <outlet property="describeLabel" destination="61b-W8-Sv8" id="hBa-49-6XE"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

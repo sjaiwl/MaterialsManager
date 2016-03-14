@@ -15,6 +15,9 @@
 #import "UIViewController+Utils.h"
 #import "UINavigationBar+Utils.h"
 #import "TaskListViewController.h"
+#import "UIImage+Utils.h"
+#import "IIViewDeckController.h"
+#import "MMAConfig.h"
 
 @interface MaterialsCollectionViewController ()<UICollectionViewDelegateFlowLayout>
 
@@ -79,10 +82,9 @@
 }
 
 - (void)setupNavigationViews{
-    self.navigationController.navigationBar.backgroundColor_MMA = MMA_BLUE_LIGHT;
-    self.navigationController.navigationBar.tintColor = MMA_BLACK(1);
     self.navigationItem.title = @"资产盘点";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"user_setting_avatar"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(userCenterAction:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user_setting_avatar"] style:UIBarButtonItemStylePlain target:self action:@selector(userCenterAction:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_bar_sidebar"] style:UIBarButtonItemStylePlain target:self action:@selector(openLeftViewControllerAction:)];
 }
 
 - (void)setupCollectionViews{
@@ -121,13 +123,13 @@
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(100, 130);
+    return CGSizeMake((IPHONE_SCREEN_WIDTH - 60) / 3.0, 200);
 }
 
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(15, 15, 15 ,15);
+    return UIEdgeInsetsMake(10, 10, 10 ,10);
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -167,13 +169,25 @@
     [self.navigationController pushViewController:self.userCenterViewController animated:YES];
 }
 
+- (void)openLeftViewControllerAction:(UIBarButtonItem *)sender{
+    IIViewDeckController *deckController = nil;
+    if ([self.parentViewController.parentViewController isKindOfClass:[IIViewDeckController class]]) {
+        deckController = (IIViewDeckController *)self.parentViewController.parentViewController;
+    }
+    [deckController openLeftViewAnimated:YES];
+}
+
 #pragma mark - observer action
 - (void)didAccountSignIn:(NSNotification *)notification{
 
 }
 
 - (void)didAccountSignOut:(NSNotification *)notification{
-    [self dismissViewControllerAnimated:YES completion:^{
+    IIViewDeckController *deckController = nil;
+    if ([self.parentViewController.parentViewController isKindOfClass:[IIViewDeckController class]]) {
+        deckController = (IIViewDeckController *)self.parentViewController.parentViewController;
+    }
+    [deckController dismissViewControllerAnimated:YES completion:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:kMMANavigationControllerDidDismissedNotification object:nil];
     }];
 }

@@ -10,6 +10,7 @@
 #import "MMAColors.h"
 #import "UIView+Utils.h"
 #import "CategoryModel.h"
+#import "UIImage+Utils.h"
 
 NSString *const MaterialsCollectionViewCellIdentifier = @"MaterialsCollectionViewCellReuseIdentifier";
 
@@ -17,6 +18,7 @@ NSString *const MaterialsCollectionViewCellIdentifier = @"MaterialsCollectionVie
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+@property (weak, nonatomic) IBOutlet UIView *topContainerView;
 
 
 @end
@@ -25,15 +27,15 @@ NSString *const MaterialsCollectionViewCellIdentifier = @"MaterialsCollectionVie
 
 - (void)awakeFromNib {
     // Initialization code
-    self.backgroundColor = MMA_GRAY_LIGHT;
-    self.layer.borderWidth = 0.6;
-    self.layer.borderColor = MMA_BLACK_LIGHT.CGColor;
-    self.cornerRadius_MMA = 5;
+    self.backgroundColor = MMA_WHITE(1);
+    self.topContainerView.backgroundColor = MMA_GRAY_LIGHT;
+    self.topContainerView.cornerRadius_MMA = 5;
     self.numberLabel.hidden = YES;
 }
 
 - (void)configCellWithCategoryModel:(CategoryModel *)categoryModel{
-    self.logoImageView.image = [UIImage imageNamed:categoryModel.imageName];
+    self.logoImageView.tintColor = MMA_BLACK(0.6);
+    self.logoImageView.image = [UIImage templateImageNamed:categoryModel.imageName];
     self.nameLabel.text = categoryModel.name;
     if (categoryModel.taskCount) {
         self.numberLabel.text = [NSString stringWithFormat:@"%lu",categoryModel.taskCount];

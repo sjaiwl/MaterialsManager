@@ -15,21 +15,24 @@ NSInteger const kMMTaskDetailsTableViewCellHeight = 44;
 @property (weak, nonatomic) IBOutlet UILabel *describeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *contentField;
 
+@property (nonatomic, copy) NSString *originalString;
+
 @end
 
 @implementation TaskDetailsTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    self.contentField.enabled = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
 - (void)configCellWithDescribeString:(NSString *)describeString contentString:(NSString *)contentString{
+    self.originalString = contentString;
     self.describeLabel.text = describeString;
     self.contentField.text = contentString;
 }

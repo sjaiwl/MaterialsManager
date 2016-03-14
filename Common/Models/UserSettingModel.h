@@ -21,4 +21,9 @@
 + (instancetype)settingCache;
 + (instancetype)settingSignOut;
 
++ (instancetype)leftViewAccount;
++ (instancetype)leftViewTask;
++ (instancetype)leftViewSetting;
++ (instancetype)leftViewAbout;
+
 @end

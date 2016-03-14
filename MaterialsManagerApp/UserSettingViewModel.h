@@ -15,4 +15,7 @@
 //current user setting info
 - (NSDictionary *)getCurrentUserSettingInfo;
 
+//current left view info
+- (NSArray *)getCurrentLeftViewInfo;
+
 @end

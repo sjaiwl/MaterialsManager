@@ -33,4 +33,15 @@
              @(SettingSectionInfoSignOut) : @[[UserSettingModel settingSignOut]],
              }.copy;
 }
+
+//current left view info
+- (NSArray *)getCurrentLeftViewInfo{
+    return @[
+             [UserSettingModel leftViewAccount],
+             [UserSettingModel leftViewTask],
+             [UserSettingModel leftViewSetting],
+             [UserSettingModel leftViewAbout],
+             ].copy;
+}
+
 @end

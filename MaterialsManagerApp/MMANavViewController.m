@@ -42,7 +42,7 @@
 
 #pragma mark - 返回状态栏颜色
 - (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
+    return UIStatusBarStyleLightContent;
 }
 /*
 #pragma mark - Navigation

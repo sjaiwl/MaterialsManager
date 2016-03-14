@@ -10,17 +10,58 @@
 #import "MMAConstants.h"
 #import "MMAConfig.h"
 #import "WelcomeViewController.h"
+#import "IIViewDeckController.h"
+#import "MaterialsLeftViewController.h"
+#import "MaterialsCollectionViewController.h"
+#import "UIViewController+Utils.h"
+#import "MMANavViewController.h"
+#import "UINavigationBar+Utils.h"
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) WelcomeViewController *welcomeViewController;
+
+@property (nonatomic, strong) IIViewDeckController *deckController;
+@property (nonatomic, strong) MaterialsCollectionViewController *materialsCollectionViewController;
+@property (nonatomic, strong) MaterialsLeftViewController *materialsLeftViewController;
 @end
 
 @implementation AppDelegate
 
+#pragma mark - Accessor
+- (WelcomeViewController *)welcomeViewController{
+    if (!_welcomeViewController) {
+        _welcomeViewController = [WelcomeViewController loadFromStoryboard];
+    }
+    return _welcomeViewController;
+}
+
+- (MaterialsLeftViewController *)materialsLeftViewController{
+    if (!_materialsLeftViewController) {
+        _materialsLeftViewController = [MaterialsLeftViewController loadFromStoryboard];
+    }
+    return _materialsLeftViewController;
+}
+
+- (MaterialsCollectionViewController *)materialsCollectionViewController{
+    if (!_materialsCollectionViewController) {
+        _materialsCollectionViewController = [MaterialsCollectionViewController loadFromStoryboard];
+    }
+    return _materialsCollectionViewController;
+}
+
+- (IIViewDeckController *)deckController{
+    if (!_deckController) {
+        _deckController = [[IIViewDeckController alloc] initWithCenterViewController:self.materialsCollectionViewController leftViewController:self.materialsLeftViewController];
+    }
+    return _deckController;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self initObserver];
+    [UINavigationBar initGlobalStyle];
     return YES;
 }
 
@@ -62,6 +103,20 @@
         return self.welcomeViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact;
     }
     return NO;
+}
+
+#pragma mark - observer notification
+- (void)initObserver{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignIn:) name:kMMAAccountDidSignInNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignOut:) name:kMMAAccountDidSignOutNotification object:nil];
+}
+
+- (void)didSignIn:(NSNotification *)notification{
+    
+}
+
+- (void)didSignOut:(NSNotification *)notification{
+
 }
 
 #pragma mark - Core Data stack

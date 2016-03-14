@@ -23,4 +23,7 @@ typedef void (^MMASignInCompletionHandler)(MMASignInResult result);
 - (void)doSignIn;
 //sign out
 - (void)doSignOut;
+
+//data
+- (AccountModel *)accountModel;
 @end

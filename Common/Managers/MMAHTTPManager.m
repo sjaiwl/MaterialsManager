@@ -23,11 +23,12 @@
 - (void)signInWithSiteUrl:(NSString *)siteUrl
                     username:(NSString *)username
                     password:(NSString *)password
+                     type:(NSString *)type
                      success:(TTHTTPRequestSuccessCompletionHandler)success
                      failure:(TTHTTPRequestFailureCompletionHandler)failure{
     [self postForURLString:siteUrl
                 needsToken:NO
-                parameters:@{@"saccount" : username,@"spassword" : password}
+                parameters:@{@"account" : username, @"password" : password, @"type" : type}
                    success:success failure:failure];
 }
 
@@ -44,13 +45,14 @@
 - (AFHTTPRequestOperationManager *)httpRequestManagerNeedsToken:(BOOL)needsToken
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];//设置相应内容类型 
-    [[self customHTTPHeadersIfNeedsToken:needsToken]
-     enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-         [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
-     }];
+//    //设置相应内容类型
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+//    [[self customHTTPHeadersIfNeedsToken:needsToken]
+//     enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+//         [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
+//     }];
     return manager;
 }
 

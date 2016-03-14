@@ -17,6 +17,14 @@ typedef NS_ENUM(NSInteger, SettingSectionInfo) {
     SettingSectionInfoSignOut,
 };
 
+//left view section info
+typedef NS_ENUM(NSInteger, LeftViewSectionInfo) {
+    LeftViewSectionInfoAccount,
+    LeftViewSectionInfoTask,
+    LeftViewSectionInfoAbout,
+    LeftViewSectionInfoSetting,
+};
+
 typedef NS_ENUM(NSUInteger, TTWeekday) {
     TTWeekdaySunday = 1,
     TTWeekdayMonday = 2,

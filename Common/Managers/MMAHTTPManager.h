@@ -24,6 +24,7 @@ typedef void (^TTHTTPDownloadCompletionHandler)(BOOL successfully, NSURL *fileUR
 - (void)signInWithSiteUrl:(NSString *)siteUrl
                     username:(NSString *)username
                     password:(NSString *)password
+                     type:(NSString *)type
                      success:(TTHTTPRequestSuccessCompletionHandler)success
                      failure:(TTHTTPRequestFailureCompletionHandler)failure;
 @end

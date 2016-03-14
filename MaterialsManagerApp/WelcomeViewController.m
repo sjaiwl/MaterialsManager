@@ -18,26 +18,30 @@
 #import "MMAConstants.h"
 #import "MBProgressHUD.h"
 #import "MMAPreferenceManager.h"
+#import "UIImage+Utils.h"
+#import "AccountModel.h"
+#import "IIViewDeckController.h"
+#import "MaterialsLeftViewController.h"
 
 @interface WelcomeViewController ()<UITextFieldDelegate>
 //app info
-@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *appNameLabel;
 //input field
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *nameLeftImageView;
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
+@property (weak, nonatomic) IBOutlet UIView *userNameBottomView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *passwordLeftImageView;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-//remember pass
-@property (weak, nonatomic) IBOutlet UIButton *rememberPasswordButton;
-@property (weak, nonatomic) IBOutlet UILabel *rememberPasswordLabel;
+@property (weak, nonatomic) IBOutlet UIView *passwordBottomView;
 //login field
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loginIndicator;
 
 @property (assign, nonatomic, getter=isShowingActivity) BOOL showingActivity;
 
+@property (nonatomic, strong) IIViewDeckController *deckController;
 @property (nonatomic, strong) MaterialsCollectionViewController *materialsCollectionViewController;
+@property (nonatomic, strong) MaterialsLeftViewController *materialsLeftViewController;
 
 @property (nonatomic, strong) MBProgressHUD *toastIndictorManager;
 @property (nonatomic, assign, getter=isIndictorShowing) BOOL indictorShowing;
@@ -55,6 +59,13 @@
         _materialsCollectionViewController = [MaterialsCollectionViewController loadFromStoryboard];
     }
     return _materialsCollectionViewController;
+}
+
+- (MaterialsLeftViewController *)materialsLeftViewController{
+    if (!_materialsLeftViewController) {
+        _materialsLeftViewController = [MaterialsLeftViewController loadFromStoryboard];
+    }
+    return _materialsLeftViewController;
 }
 
 - (MMAPreferenceManager *)preferenceManager{
@@ -79,20 +90,81 @@
 
 #pragma mark - setup subViews
 - (void)setupSubViews{
+    [self setupBackGroundView];
     [self setupTextFieldViews];
-    [self setupRememberPasswordViews];
     [self setupLoginButtonViews];
 }
 
+//设置背景渐变
+- (void)setupBackGroundView{
+    CAGradientLayer *colorLayer = [CAGradientLayer layer];
+    colorLayer.frame = self.view.frame;
+    colorLayer.position = self.view.center;
+    [self.view.layer insertSublayer:colorLayer atIndex:0];
+
+    colorLayer.colors = @[(__bridge id)MMA_GRADIENT_COLOR_STARE(1).CGColor,
+                          (__bridge id)MMA_GRADIENT_COLOR_CENTER(1).CGColor,
+                          (__bridge id)MMA_GRADIENT_COLOR_END(1).CGColor,];
+
+    colorLayer.startPoint = CGPointMake(1, 0);
+    colorLayer.endPoint = CGPointMake(0, 1);
+}
+
 - (void)setupTextFieldViews{
+    self.appNameLabel.textColor = MMA_WHITE(1);
     //set preference
     [self setupPreferenceValue];
+    //name field
+    [self setupNameField];
+    //password field
+    [self setupPasswordField];
+}
+
+- (void)setupNameField{
     //return type
     self.userNameField.returnKeyType = UIReturnKeyNext;
+    //title color
+    self.userNameField.textColor = MMA_WHITE(1);
+    self.userNameField.delegate = self;
+
+    if ([self.userNameField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        self.userNameField.attributedPlaceholder =
+        [[NSAttributedString alloc] initWithString:@"用户名"
+                                        attributes:@{ NSForegroundColorAttributeName : MMA_PLACEHOLDER_COLOR}];
+    } else {
+        self.userNameField.placeholder = @"用户名";
+    }
+
+    //left view
+    self.nameLeftImageView.contentMode = UIViewContentModeCenter;
+    self.nameLeftImageView.image = [UIImage templateImageNamed:@"sign_in_account"];
+    self.nameLeftImageView.tintColor = MMA_PLACEHOLDER_COLOR;
+
+    //bottom view
+    self.userNameBottomView.backgroundColor = MMA_PLACEHOLDER_COLOR;
+}
+
+- (void)setupPasswordField{
+    //return type
     self.passwordField.returnKeyType = UIReturnKeyDone;
     self.passwordField.secureTextEntry = YES;
-    self.userNameField.delegate = self;
+    //title color
+    self.passwordField.textColor = MMA_WHITE(1);
     self.passwordField.delegate = self;
+
+    if ([self.passwordField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        self.passwordField.attributedPlaceholder =
+        [[NSAttributedString alloc] initWithString:@"密码"
+                                        attributes:@{ NSForegroundColorAttributeName : MMA_PLACEHOLDER_COLOR}];
+    } else {
+        self.passwordField.placeholder = @"密码";
+    }
+    //left view
+    self.passwordLeftImageView.contentMode = UIViewContentModeCenter;
+    self.passwordLeftImageView.image = [UIImage templateImageNamed:@"sign_in_password"];
+    self.passwordLeftImageView.tintColor = MMA_PLACEHOLDER_COLOR;
+    //bottom view
+    self.passwordBottomView.backgroundColor = MMA_PLACEHOLDER_COLOR;
 }
 
 - (void)setupPreferenceValue{
@@ -101,7 +173,10 @@
     if (name) {
         self.userNameField.text = name;
     }
-    if (password && [self.preferenceManager getUserDefaultsForRememberPassword]) {
+//    if (password && [self.preferenceManager getUserDefaultsForRememberPassword]) {
+//        self.passwordField.text = password;
+//    }
+    if (password) {
         self.passwordField.text = password;
     }
 }
@@ -111,19 +186,11 @@
     [self.preferenceManager setUserDefaultsForUserPassword:self.passwordField.text];
 }
 
-- (void)setupRememberPasswordViews{
-    [self.rememberPasswordButton setImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
-    [self.rememberPasswordButton setImage:[UIImage imageNamed:@"btn_checked"] forState:UIControlStateSelected];
-    self.rememberPasswordButton.selected = [self.preferenceManager getUserDefaultsForRememberPassword];
-}
-
 - (void)setupLoginButtonViews{
-    self.loginIndicator.hidden = YES;
-    [self.loginButton setTitleColor:MMA_BLACK(1) forState:UIControlStateNormal];
-    self.loginButton.backgroundColor = MMA_BLUE_LIGHT;
-    self.loginButton.layer.borderWidth = 0.6;
-    self.loginButton.layer.borderColor = MMA_BLACK_LIGHT.CGColor;
-    self.loginButton.cornerRadius_MMA = 5;
+    [self.loginButton setTitle:@"登 录" forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.loginButton.backgroundColor = MMA_GREEN(1);
+    self.loginButton.cornerRadius_MMA = self.loginButton.frame.size.height / 2.0;
 }
 
 #pragma mark - init observer
@@ -132,19 +199,33 @@
 }
 
 #pragma mark - button action
-- (IBAction)rememberPasswordButtonAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    [self.preferenceManager setUserDefaultsForRememberPassword:sender.isSelected];
-}
-
 - (IBAction)loginButtonAction:(UIButton *)sender {
     if ([self checkNameAndPassWord]) {
         [self loginBegin];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self loginSuccess];
-        });
+        AccountModel *accountModel = [[AccountModel alloc] init];
+        accountModel.saccount = self.userNameField.text;
+        accountModel.spassword = self.passwordField.text;
+        accountModel.stype = @"2";
+        [[MMAAccountManager sharedManager] signInWithSiteUrl:LoginUrl AccountModel:accountModel completionHandler:^(MMASignInResult result) {
+            [self handleSignInResult:result];
+        }];
     } else {
         [self showToastWithMessage:@"用户名或密码为空"];
+    }
+}
+
+- (void)handleSignInResult:(MMASignInResult)result{
+    switch (result) {
+        case MMASignInResultSuccess:
+            [self loginSuccess];
+            break;
+
+            case MMASignInResultOtherError:
+            [self loginFailed];
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -164,31 +245,20 @@
 }
 - (void)loginSuccess{
     [self hideToastWithIndicatorView];
-    MMANavViewController *nav = [[MMANavViewController alloc] initWithRootViewController:self.materialsCollectionViewController];
-    self.materialsCollectionViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:nav animated:YES completion:nil];
+
+    MMANavViewController *navCenter = [[MMANavViewController alloc] initWithRootViewController:self.materialsCollectionViewController];
+
+    self.deckController = [[IIViewDeckController alloc] initWithCenterViewController:navCenter leftViewController:self.materialsLeftViewController];
+    self.deckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+    self.deckController.delegateMode = IIViewDeckDelegateAndSubControllers;
+    self.deckController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+    [self presentViewController:self.deckController animated:YES completion:nil];
 }
 
 - (void)loginFailed{
     [self hideToastWithIndicatorView];
     [self showToastWithMessage:@"登录失败"];
-}
-
-#pragma mark - button state
-- (void)startLoginNormalState{
-    self.loginButton.enabled = YES;
-    self.loginIndicator.hidden = YES;
-    if (self.loginIndicator.isAnimating) {
-        [self.loginIndicator stopAnimating];
-    }
-}
-
-- (void)startLoginingState{
-    self.loginButton.enabled = NO;
-    self.loginIndicator.hidden = NO;
-    if (!self.loginIndicator.isAnimating) {
-        [self.loginIndicator startAnimating];
-    }
 }
 
 #pragma mark - toast function
@@ -236,11 +306,13 @@
 
 #pragma mark - 返回状态栏颜色
 - (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - observer action
 - (void)mainNavigationControllerDismissed:(NSNotification *)notification{
     self.materialsCollectionViewController = nil;
+    self.materialsLeftViewController = nil;
+    self.deckController = nil;
 }
 @end

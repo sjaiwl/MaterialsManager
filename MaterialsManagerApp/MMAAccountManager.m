@@ -12,6 +12,12 @@
 #import "MMAHTTPManager.h"
 #import "MMALogs.h"
 
+@interface MMAAccountManager ()
+
+@property (nonatomic ,strong) AccountModel *account;
+
+@end
+
 @implementation MMAAccountManager
 
 #pragma mark - Singleton
@@ -28,10 +34,26 @@
 - (void)signInWithSiteUrl:(NSString *)siteUtl
              AccountModel:(AccountModel *)accountModel
         completionHandler:(MMASignInCompletionHandler)completionHandler{
-    [[MMAHTTPManager sharedManager] signInWithSiteUrl:siteUtl username:accountModel.saccount password:accountModel.spassword success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
+    [[MMAHTTPManager sharedManager] signInWithSiteUrl:siteUtl username:accountModel.saccount password:accountModel.spassword  type:accountModel.stype success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        DLog(@"%@",responseObject);
+        DLog(@"%@",responseObject[@"msg"]);
+        NSNumber *codeSign = responseObject[@"code"];
+        if (codeSign.integerValue == 0) {
+            self.account = [AccountModel createModelWithJSONDictionary:responseObject[@"data"]];
+            if (completionHandler) {
+                completionHandler(MMASignInResultSuccess);
+            }
+        } else {
+            if (completionHandler) {
+                completionHandler(MMASignInResultOtherError);
+            }
+        }
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
+        DLog(@"%@",error);
+        if (completionHandler) {
+            completionHandler(MMASignInResultOtherError);
+        }
     }];
 }
 
@@ -42,5 +64,10 @@
 //sign out
 - (void)doSignOut{
     [[NSNotificationCenter defaultCenter] postNotificationName:kMMAAccountDidSignOutNotification object:nil];
+}
+
+//data
+- (AccountModel *)accountModel{
+    return self.account;
 }
 @end

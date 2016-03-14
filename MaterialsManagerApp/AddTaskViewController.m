@@ -27,8 +27,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UITextField *peopleField;
 @property (weak, nonatomic) IBOutlet UIButton *selectDateButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 //sheet view
 @property (nonatomic, strong) MMASheetView *sheetView;
@@ -58,23 +56,27 @@
 }
 
 - (void)setupNavigationViews{
-    self.navigationController.navigationBar.backgroundColor_MMA = MMA_BLUE_LIGHT;
-    self.navigationController.navigationBar.tintColor = MMA_BLACK(1);
     self.navigationItem.title = @"任务编辑";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(navCancelAction:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(navDoneAction:)];
 }
 
 - (void)setupLabel{
     //label
-    self.departmentLabel.backgroundColor = MMA_BLUE_LIGHT;
+    self.departmentLabel.backgroundColor = MMA_BLACK(0.6);
+    self.departmentLabel.textColor = MMA_WHITE(1);
     self.departmentLabel.cornerRadius_MMA = 3;
 
-    self.assetLabel.backgroundColor = MMA_BLUE_LIGHT;
+    self.assetLabel.backgroundColor = MMA_BLACK(0.6);
+    self.assetLabel.textColor = MMA_WHITE(1);
     self.assetLabel.cornerRadius_MMA = 3;
 
-    self.peopleLabel.backgroundColor = MMA_BLUE_LIGHT;
+    self.peopleLabel.backgroundColor = MMA_BLACK(0.6);
+    self.peopleLabel.textColor = MMA_WHITE(1);
     self.peopleLabel.cornerRadius_MMA = 3;
 
-    self.durationLabel.backgroundColor = MMA_BLUE_LIGHT;
+    self.durationLabel.backgroundColor = MMA_BLACK(0.6);
+    self.durationLabel.textColor = MMA_WHITE(1);
     self.durationLabel.cornerRadius_MMA = 3;
 }
 
@@ -97,18 +99,6 @@
     self.selectDateButton.layer.borderColor = MMA_BLACK_LIGHT.CGColor;
     self.selectDateButton.cornerRadius_MMA = 5;
     self.selectDateButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-
-    [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.cancelButton.backgroundColor = MMA_BLUE_LIGHT;
-//    self.cancelButton.layer.borderColor = MMA_BLACK_LIGHT.CGColor;
-//    self.cancelButton.layer.borderWidth = 0.6;
-//    self.cancelButton.cornerRadius_MMA = 5;
-
-    [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.doneButton.backgroundColor = MMA_BLUE_LIGHT;
-//    self.doneButton.layer.borderColor = MMA_BLACK_LIGHT.CGColor;
-//    self.doneButton.layer.borderWidth = 0.6;
-//    self.doneButton.cornerRadius_MMA = 5;
 }
 /*
 #pragma mark - Navigation
@@ -139,11 +129,12 @@
     [self.sheetView show];
 }
 
-- (IBAction)doneAction:(UIButton *)sender {
+#pragma mark - button action
+- (void)navDoneAction:(UIBarButtonItem *)sender {
 
 }
 
-- (IBAction)cancelAction:(UIButton *)sender {
+- (void)navCancelAction:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

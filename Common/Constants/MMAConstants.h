@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 //url
-#define SiteDomain @"http://project.lanou3g.com/teacher/yihuiyun/lanouproject"
-#define LoginUrl [SiteDomain stringByAppendingString:@"/activitylist.php"]
+#define SiteDomain @"http://120.26.214.228/hmms"
+#define LoginUrl [SiteDomain stringByAppendingString:@"/user.do?flag=login"]
 
 
 //category item id
@@ -44,6 +44,21 @@
 #define USER_SETTING_SECTION_ABOUT_APP @"关于软件"
 #define USER_SETTING_SECTION_CACHE @"清除缓存"
 #define USER_SETTING_SECTION_SIGNOUT @"退出登录"
+
+//left view name
+#define LEFT_VIEW_ACCOUNT @"账户信息"
+#define LEFT_VIEW_TASK @"今日任务"
+#define LEFT_VIEW_SETTING @"偏好设置"
+#define LEFT_VIEW_ABOUT @"关于软件"
+
+//table view image
+#define TABLE_VIEW_IMAGE_ACCOUNT @"user_setting_avatar"
+#define TABLE_VIEW_IMAGE_NOTIFICATION @"setting_reminder_icon"
+#define TABLE_VIEW_IMAGE_FEEDBACK @"settings_feedback_icon"
+#define TABLE_VIEW_IMAGE_TASK @"settings_task_icon"
+#define TABLE_VIEW_IMAGE_SETTING @"setting_header_settings_icon"
+#define TABLE_VIEW_IMAGE_ABOUT @"settings_about_icon"
+#define TABLE_VIEW_IMAGE_CLEARCACHE @"settings_cache_icon"
 
 //notification
 extern NSString *const kMMAAccountDidSignInNotification;

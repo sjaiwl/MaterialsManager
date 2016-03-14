@@ -16,6 +16,8 @@
 #define MATERIALS_LIST_IMAGE_ASSET [UIImage imageNamed:@"materials_list_asset"]
 #define MATERIALS_LIST_IMAGE_TRANSFER [UIImage imageNamed:@"materials_list_transfer"]
 
+
+
 @interface MMAImages : NSObject
 
 @end

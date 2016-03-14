@@ -14,6 +14,7 @@
 #import "SDImageCache.h"
 #import "MMAAccountManager.h"
 #import "MMAColors.h"
+#import "UIImage+Utils.h"
 
 static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResueIdentifier";
 
@@ -63,7 +64,6 @@ static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResue
 - (void)setupNavigationViews{
     //设置nav文字颜色
     self.navigationItem.title = @"个人管理";
-    self.navigationController.navigationBar.tintColor = MMA_BLACK(1);
 }
 
 - (void)setupTableViews{
@@ -105,8 +105,13 @@ static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResue
         case SettingSectionInfoNotification:
         case SettingSectionInfoAbout:
         case SettingSectionInfoCache:
+            cell.textLabel.textColor = MMA_BLACK(1);
             cell.textLabel.text = dataModal.name;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            if (dataModal.imageName) {
+                cell.imageView.tintColor = MMA_BLACK(0.8);
+                cell.imageView.image = [UIImage templateImageNamed:dataModal.imageName];
+            }
             break;
 
         case SettingSectionInfoSignOut:
@@ -126,6 +131,8 @@ static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResue
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
+    //清除tableview选中效果
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // Create the next view controller.
     switch (indexPath.section) {
             //acount
@@ -154,8 +161,6 @@ static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResue
         default:
             break;
     }
-    //清除tableview选中效果
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - TableView Selection Action

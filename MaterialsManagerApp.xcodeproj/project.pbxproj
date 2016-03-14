@@ -14,6 +14,10 @@
 		C225E99B1C8BF7FF0045DF48 /* MMABlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C225E99A1C8BF7FF0045DF48 /* MMABlocks.m */; };
 		C225E99E1C8BF8230045DF48 /* MMAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = C225E99D1C8BF8230045DF48 /* MMAColors.m */; };
 		C225E9A11C8BF8310045DF48 /* MMAImages.m in Sources */ = {isa = PBXBuildFile; fileRef = C225E9A01C8BF8310045DF48 /* MMAImages.m */; };
+		C23478E71C95947100425E2F /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E11C95947100425E2F /* IISideController.m */; };
+		C23478E81C95947100425E2F /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E31C95947100425E2F /* IIViewDeckController.m */; };
+		C23478E91C95947100425E2F /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E51C95947100425E2F /* IIWrapController.m */; };
+		C23478EC1C969D4600425E2F /* MaterialsLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478EB1C969D4600425E2F /* MaterialsLeftViewController.m */; };
 		C24C5D7E1C916682007A4FAB /* TKJSONSerializedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5D7D1C916682007A4FAB /* TKJSONSerializedModel.m */; };
 		C24C5D831C916879007A4FAB /* NSArray+JSONSerializedString.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5D821C916879007A4FAB /* NSArray+JSONSerializedString.m */; };
 		C24C5D8B1C9168B7007A4FAB /* NSMutableDictionary+Setter.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5D861C9168B7007A4FAB /* NSMutableDictionary+Setter.m */; };
@@ -179,6 +183,14 @@
 		C225E99D1C8BF8230045DF48 /* MMAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAColors.m; sourceTree = "<group>"; };
 		C225E99F1C8BF8310045DF48 /* MMAImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAImages.h; sourceTree = "<group>"; };
 		C225E9A01C8BF8310045DF48 /* MMAImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAImages.m; sourceTree = "<group>"; };
+		C23478E01C95947100425E2F /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
+		C23478E11C95947100425E2F /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
+		C23478E21C95947100425E2F /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		C23478E31C95947100425E2F /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		C23478E41C95947100425E2F /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
+		C23478E51C95947100425E2F /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
+		C23478EA1C969D4600425E2F /* MaterialsLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialsLeftViewController.h; sourceTree = "<group>"; };
+		C23478EB1C969D4600425E2F /* MaterialsLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaterialsLeftViewController.m; sourceTree = "<group>"; };
 		C24C5D7C1C916682007A4FAB /* TKJSONSerializedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKJSONSerializedModel.h; sourceTree = "<group>"; };
 		C24C5D7D1C916682007A4FAB /* TKJSONSerializedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKJSONSerializedModel.m; sourceTree = "<group>"; };
 		C24C5D811C916879007A4FAB /* NSArray+JSONSerializedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JSONSerializedString.h"; sourceTree = "<group>"; };
@@ -471,6 +483,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C23478DF1C95947100425E2F /* ViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				C23478E01C95947100425E2F /* IISideController.h */,
+				C23478E11C95947100425E2F /* IISideController.m */,
+				C23478E21C95947100425E2F /* IIViewDeckController.h */,
+				C23478E31C95947100425E2F /* IIViewDeckController.m */,
+				C23478E41C95947100425E2F /* IIWrapController.h */,
+				C23478E51C95947100425E2F /* IIWrapController.m */,
+			);
+			path = ViewDeck;
+			sourceTree = "<group>";
+		};
 		C24C5D7B1C91664F007A4FAB /* TKJSONSerializedModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +787,8 @@
 			children = (
 				C26A0ADD1C4B9A3D003AA7EF /* WelcomeViewController.h */,
 				C26A0ADE1C4B9A3D003AA7EF /* WelcomeViewController.m */,
+				C23478EA1C969D4600425E2F /* MaterialsLeftViewController.h */,
+				C23478EB1C969D4600425E2F /* MaterialsLeftViewController.m */,
 				C25668801C8C21CF009F370E /* MaterialsCollectionViewController.h */,
 				C25668811C8C21CF009F370E /* MaterialsCollectionViewController.m */,
 				C27447221C8D4C580027A515 /* UserCenterViewController.h */,
@@ -872,6 +899,7 @@
 		C28A0D791C8AFAFA0098614F /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				C23478DF1C95947100425E2F /* ViewDeck */,
 				C24C5DA41C9193AE007A4FAB /* AFNetworking */,
 				C2CCF7951C90702100F806CD /* MJExtension */,
 				C256684D1C8C0F20009F370E /* Masonry */,
@@ -1217,6 +1245,7 @@
 				C225E98F1C8BF2BF0045DF48 /* MMAConstants.m in Sources */,
 				C2CCF7AC1C90702100F806CD /* MJFoundation.m in Sources */,
 				C256686E1C8C0F20009F370E /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				C23478E71C95947100425E2F /* IISideController.m in Sources */,
 				C27447251C8D4C580027A515 /* UserCenterViewController.m in Sources */,
 				C28A0E301C8AFD4A0098614F /* UIImage+GIF.m in Sources */,
 				C2CCF7B11C90702100F806CD /* NSObject+MJCoding.m in Sources */,
@@ -1231,6 +1260,7 @@
 				C2D65FB01C8B0050008BC07B /* NSDictionary+MTLManipulationAdditions.m in Sources */,
 				C2D65FB41C8B0050008BC07B /* NSValueTransformer+MTLInversionAdditions.m in Sources */,
 				C25668761C8C14D9009F370E /* UIColor+Hex.m in Sources */,
+				C23478E91C95947100425E2F /* IIWrapController.m in Sources */,
 				C2CCF77F1C8FF87400F806CD /* NSString+Time.m in Sources */,
 				C24C5DC01C9193AE007A4FAB /* AFURLSessionManager.m in Sources */,
 				C2D65FA71C8B0050008BC07B /* EXTScope.m in Sources */,
@@ -1240,6 +1270,7 @@
 				C2CCF7B41C90702100F806CD /* NSString+MJExtension.m in Sources */,
 				C2CCF7AE1C90702100F806CD /* MJPropertyKey.m in Sources */,
 				C225E9A11C8BF8310045DF48 /* MMAImages.m in Sources */,
+				C23478E81C95947100425E2F /* IIViewDeckController.m in Sources */,
 				C27447491C8DAA730027A515 /* TaskDetailsViewController.m in Sources */,
 				C26A0AE51C4B9A3D003AA7EF /* MaterialsManagerApp.xcdatamodeld in Sources */,
 				C2CCF7AB1C90702100F806CD /* MJExtensionConst.m in Sources */,
@@ -1327,6 +1358,7 @@
 				C28A0E2F1C8AFD4A0098614F /* UIButton+WebCache.m in Sources */,
 				C28A0E341C8AFD4A0098614F /* UIImageView+WebCache.m in Sources */,
 				C2CCF7AF1C90702100F806CD /* MJPropertyType.m in Sources */,
+				C23478EC1C969D4600425E2F /* MaterialsLeftViewController.m in Sources */,
 				C25668771C8C14D9009F370E /* UIImage+Utils.m in Sources */,
 				C24C5DC61C91C526007A4FAB /* UIView+Toast.m in Sources */,
 				C28A0E2B1C8AFD4A0098614F /* SDWebImageDownloader.m in Sources */,

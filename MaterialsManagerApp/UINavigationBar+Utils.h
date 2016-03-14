@@ -15,4 +15,7 @@
 
 - (void)setBackgroundColor_MMA:(UIColor *)backgroundColor_MMA;
 - (UIColor *)backgroundColor_MMA;
+
++ (void)initGlobalStyle;
++ (void)updateGlobalStyle;
 @end

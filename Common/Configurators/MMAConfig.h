@@ -43,6 +43,12 @@
 //window
 #define CURRENT_WINDOW [[[UIApplication sharedApplication] delegate] window]
 
+// Screen bounds
+#define IPHONE_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define IPHONE_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define LEFT_CONTAINER_VIEW_WIDTH (TARGET_DEVICE_IPHONE ? (IPHONE_SCREEN_WIDTH - 44) : 320)
+
 @interface MMAConfig : NSObject
 
 @end

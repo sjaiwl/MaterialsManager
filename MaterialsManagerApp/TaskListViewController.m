@@ -18,8 +18,12 @@
 #import "TaskModel.h"
 #import "TaskListViewModel.h"
 #import "MMALogs.h"
+#import "MMAColors.h"
+#import "SRRefreshView.h"
+#import "TTScrollToLoadTableFooterView.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
-@interface TaskListViewController ()
+@interface TaskListViewController ()<SRRefreshDelegate>
 //details controller
 @property (nonatomic, strong) TaskDetailsViewController *taskDetailsController;
 //add task controller
@@ -27,6 +31,14 @@
 
 @property (nonatomic, strong) TaskListViewModel *viewModel;
 @property (nonatomic, copy) NSArray *taskModelArray;
+
+@property (nonatomic, strong) SRRefreshView *slimeRefreshView;
+// Sync
+@property (nonatomic, assign) BOOL reloading;
+
+//foot view
+@property (nonatomic, strong) TTScrollToLoadTableFooterView *loadingFooterView;
+@property (nonatomic, strong) TTScrollToLoadTableFooterView *viewMoreFooterView;
 
 @end
 
@@ -61,6 +73,42 @@
     return _taskModelArray;
 }
 
+- (SRRefreshView *)slimeRefreshView {
+    if (_slimeRefreshView == nil) {
+        _slimeRefreshView = [[SRRefreshView alloc] init];
+        _slimeRefreshView.delegate = self;
+        _slimeRefreshView.slimeMissWhenGoingBack = YES;
+        _slimeRefreshView.slime.bodyColor = MMA_BLACK(1);
+        _slimeRefreshView.slime.skinColor = [UIColor whiteColor];
+        _slimeRefreshView.slime.lineWith = 1;
+        _slimeRefreshView.slime.shadowBlur = 0;
+
+        _slimeRefreshView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    }
+    return _slimeRefreshView;
+}
+
+- (TTScrollToLoadTableFooterView *)loadingFooterView {
+    if (!_loadingFooterView) {
+        _loadingFooterView = [TTScrollToLoadTableFooterView
+                              loadFromNibWithState:TTScrollToLoadTableFooterViewStateLoading
+                              unlocalizedTitle:@"正在加载..."];
+    }
+    return _loadingFooterView;
+}
+
+- (TTScrollToLoadTableFooterView *)viewMoreFooterView {
+    if (!_viewMoreFooterView) {
+        _viewMoreFooterView = [TTScrollToLoadTableFooterView
+                               loadFromNibWithUnlocalizedTitle:@"查看更多"
+                               retryHandler:^{
+                                   [self.tableView triggerInfiniteScrolling];
+                                   [self doLoadingMoreTask];
+                               }];
+    }
+    return _viewMoreFooterView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupSubViews];
@@ -89,9 +137,34 @@
 }
 
 - (void)setupTableViews{
+    //register cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TaskTableViewCell class]) bundle:nil] forCellReuseIdentifier:kMMATaskTableViewCellIdentifier];
-
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TaskTableViewSectionView class]) bundle:nil] forCellReuseIdentifier:kMMATaskTableViewSectionViewIdentifier];
+    //add slime view
+    [self.tableView addSubview:self.slimeRefreshView];
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    //update slime view
+    [self.slimeRefreshView update:64];
+    //add scroll
+    [self addIndiniteScrollingView];
+}
+
+- (void)addIndiniteScrollingView{
+    __weak TaskListViewController *weakSelf = self;
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf doLoadingMoreTask];
+    }];
+
+    [self.tableView.infiniteScrollingView setCustomView:self.viewMoreFooterView forState:SVInfiniteScrollingStateStopped];
+
+    [self.tableView.infiniteScrollingView setCustomView:self.loadingFooterView forState:SVInfiniteScrollingStateLoading];
+
+    [self.tableView.infiniteScrollingView setCustomView:self.loadingFooterView forState:SVInfiniteScrollingStateTriggered];
+
+    self.tableView.infiniteScrollingView.enabled = YES;
+    self.tableView.showsInfiniteScrolling = YES;
+
+    [self.tableView triggerInfiniteScrolling];
 }
 
 #pragma mark - Table view data source
@@ -148,7 +221,40 @@
     [self.navigationController pushViewController:self.taskDetailsController animated:YES];
 }
 
+#pragma mark - UIScrollViewDelegate
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.slimeRefreshView scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self.slimeRefreshView scrollViewDidEndDraging];
+}
+
+#pragma mark - SRRefreshDelegate
+- (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView {
+    self.reloading = YES;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    __weak TaskListViewController *weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf doneLoadingTableViewData:@(YES)];
+    });
+}
+
+- (void)doneLoadingTableViewData:(NSNumber *)isFocusSync {
+    self.reloading = NO;
+    [self.slimeRefreshView endRefresh];
+    self.tableView.showsVerticalScrollIndicator = YES;
+}
+
+#pragma mark - do load more task
+- (void)doLoadingMoreTask{
+    __weak TaskListViewController *weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        weakSelf.tableView.showsInfiniteScrolling = YES;
+    });
+}
 /*
 #pragma mark - Navigation
 

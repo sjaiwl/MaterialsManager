@@ -50,6 +50,7 @@ static double const HoursForOneDay = 24;
 
 - (NSString *)stringForTimeYYYYMMDD;
 - (NSString *)stringForTimeHHMMSS;
+- (NSString *)stringForTimeYYYYMMDDHHMMSS;
 
 - (NSString *)yyyyMMddWithTimeZone;
 

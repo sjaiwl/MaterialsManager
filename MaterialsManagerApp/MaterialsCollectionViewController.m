@@ -18,8 +18,10 @@
 #import "UIImage+Utils.h"
 #import "IIViewDeckController.h"
 #import "MMAConfig.h"
+#import "SRRefreshView.h"
+#import "RESideMenu.h"
 
-@interface MaterialsCollectionViewController ()<UICollectionViewDelegateFlowLayout>
+@interface MaterialsCollectionViewController ()<UICollectionViewDelegateFlowLayout,SRRefreshDelegate>
 
 //data
 @property (nonatomic, strong) CategoryViewModel *viewModel;
@@ -27,6 +29,10 @@
 
 //view controller
 @property (nonatomic, strong) UserCenterViewController *userCenterViewController;
+
+@property (nonatomic, strong) SRRefreshView *slimeRefreshView;
+// Sync
+@property (nonatomic, assign) BOOL reloading;
 @end
 
 @implementation MaterialsCollectionViewController
@@ -75,6 +81,21 @@
     return _userCenterViewController;
 }
 
+- (SRRefreshView *)slimeRefreshView {
+    if (_slimeRefreshView == nil) {
+        _slimeRefreshView = [[SRRefreshView alloc] init];
+        _slimeRefreshView.delegate = self;
+        _slimeRefreshView.slimeMissWhenGoingBack = YES;
+        _slimeRefreshView.slime.bodyColor = MMA_BLACK(1);
+        _slimeRefreshView.slime.skinColor = [UIColor whiteColor];
+        _slimeRefreshView.slime.lineWith = 1;
+        _slimeRefreshView.slime.shadowBlur = 0;
+
+        _slimeRefreshView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    }
+    return _slimeRefreshView;
+}
+
 #pragma mark - setup subViews
 - (void)setupSubViews{
     [self setupNavigationViews];
@@ -90,6 +111,10 @@
 - (void)setupCollectionViews{
     // Register cell classes
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([MaterialsCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:MaterialsCollectionViewCellIdentifier];
+    [self.collectionView addSubview:self.slimeRefreshView];
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    //update slime view
+    [self.slimeRefreshView update:64];
 }
 
 #pragma mark - init observer
@@ -163,6 +188,31 @@
 	
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.slimeRefreshView scrollViewDidScroll];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self.slimeRefreshView scrollViewDidEndDraging];
+}
+
+#pragma mark - SRRefreshDelegate
+- (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView {
+    self.reloading = YES;
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    __weak MaterialsCollectionViewController *weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf doneLoadingTableViewData:@(YES)];
+    });
+}
+
+- (void)doneLoadingTableViewData:(NSNumber *)isFocusSync {
+    self.reloading = NO;
+    [self.slimeRefreshView endRefresh];
+    self.collectionView.showsVerticalScrollIndicator = YES;
+}
 
 #pragma mark - user center action
 - (void)userCenterAction:(UIBarButtonItem *)sender{
@@ -170,11 +220,11 @@
 }
 
 - (void)openLeftViewControllerAction:(UIBarButtonItem *)sender{
-    IIViewDeckController *deckController = nil;
-    if ([self.parentViewController.parentViewController isKindOfClass:[IIViewDeckController class]]) {
-        deckController = (IIViewDeckController *)self.parentViewController.parentViewController;
+    RESideMenu *deckController = nil;
+    if ([self.parentViewController.parentViewController isKindOfClass:[RESideMenu class]]) {
+        deckController = (RESideMenu *)self.parentViewController.parentViewController;
     }
-    [deckController openLeftViewAnimated:YES];
+    [deckController presentLeftMenuViewController];
 }
 
 #pragma mark - observer action
@@ -183,12 +233,13 @@
 }
 
 - (void)didAccountSignOut:(NSNotification *)notification{
-    IIViewDeckController *deckController = nil;
-    if ([self.parentViewController.parentViewController isKindOfClass:[IIViewDeckController class]]) {
-        deckController = (IIViewDeckController *)self.parentViewController.parentViewController;
+    RESideMenu *deckController = nil;
+    if ([self.parentViewController.parentViewController isKindOfClass:[RESideMenu class]]) {
+        deckController = (RESideMenu *)self.parentViewController.parentViewController;
     }
     [deckController dismissViewControllerAnimated:YES completion:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:kMMANavigationControllerDidDismissedNotification object:nil];
     }];
 }
+
 @end

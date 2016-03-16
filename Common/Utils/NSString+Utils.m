@@ -308,7 +308,7 @@ static CGFloat const DEFAULT_LINE_BREAK_MODE = NSLineBreakByWordWrapping;
     if (yyyyMMddHHmmssDateFormatter == nil) {
         yyyyMMddHHmmssDateFormatter = [[NSDateFormatter alloc] init];
         yyyyMMddHHmmssDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-        yyyyMMddHHmmssDateFormatter.dateFormat = yyyy_MM_dd_HH_mm_ss;
+        yyyyMMddHHmmssDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     }
     return yyyyMMddHHmmssDateFormatter;
 }

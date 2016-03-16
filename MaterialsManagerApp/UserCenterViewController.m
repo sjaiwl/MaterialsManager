@@ -15,6 +15,7 @@
 #import "MMAAccountManager.h"
 #import "MMAColors.h"
 #import "UIImage+Utils.h"
+#import "IIViewDeckController.h"
 
 static NSString *const kMMAUserCenterCellReuseIdentifier = @"userCenterCellResueIdentifier";
 

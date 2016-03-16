@@ -16,7 +16,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIo-m4-wCh">
                         <rect key="frame" x="0.0" y="0.0" width="128" height="153"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="materials_list_asset" translatesAutoresizingMaskIntoConstraints="NO" id="q3k-AA-rXM">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="materials_list_asset" translatesAutoresizingMaskIntoConstraints="NO" id="q3k-AA-rXM">
                                 <rect key="frame" x="34" y="46" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="W1D-jG-v8Y"/>
@@ -82,6 +82,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="materials_list_asset" width="60" height="60"/>
+        <image name="materials_list_asset" width="64" height="64"/>
     </resources>
 </document>

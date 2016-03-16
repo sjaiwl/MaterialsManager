@@ -73,9 +73,9 @@
 + (MTLValueTransformer *)dateTransformer
 {
     return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString * value, BOOL *success, NSError *__autoreleasing *error) {
-        return value.dateFromUTCFormatedString;
+        return value.dateForYYYYMMDDHHMMSS;
     } reverseBlock:^id(NSDate* value, BOOL *success, NSError *__autoreleasing *error) {
-        return value.stringFromUTCDate;
+        return value.stringForTimeYYYYMMDDHHMMSS;
     }];
 }
 

@@ -14,6 +14,18 @@
 		C225E99B1C8BF7FF0045DF48 /* MMABlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C225E99A1C8BF7FF0045DF48 /* MMABlocks.m */; };
 		C225E99E1C8BF8230045DF48 /* MMAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = C225E99D1C8BF8230045DF48 /* MMAColors.m */; };
 		C225E9A11C8BF8310045DF48 /* MMAImages.m in Sources */ = {isa = PBXBuildFile; fileRef = C225E9A01C8BF8310045DF48 /* MMAImages.m */; };
+		C22DE8A41C980B670069B78D /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DE89D1C980B670069B78D /* sr_refresh.png */; };
+		C22DE8A51C980B670069B78D /* sr_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DE89E1C980B670069B78D /* sr_refresh@2x.png */; };
+		C22DE8A61C980B670069B78D /* SRSlimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8A01C980B670069B78D /* SRSlimeView.m */; };
+		C22DE8A71C980B670069B78D /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8A21C980B670069B78D /* SRRefreshView.m */; };
+		C22DE8A91C980CCC0069B78D /* sr_refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DE8A81C980CCC0069B78D /* sr_refresh@3x.png */; };
+		C22DE8B01C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8AD1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m */; };
+		C22DE8B11C98164D0069B78D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8AF1C98164D0069B78D /* UIScrollView+SVPullToRefresh.m */; };
+		C22DE8BA1C9845C90069B78D /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8B51C9845C90069B78D /* RECommonFunctions.m */; };
+		C22DE8BB1C9845C90069B78D /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8B71C9845C90069B78D /* RESideMenu.m */; };
+		C22DE8BC1C9845C90069B78D /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8B91C9845C90069B78D /* UIViewController+RESideMenu.m */; };
+		C22DE8C01C984F740069B78D /* TTScrollToLoadTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8BE1C984F740069B78D /* TTScrollToLoadTableFooterView.m */; };
+		C22DE8C11C984F740069B78D /* TTScrollToLoadTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22DE8BF1C984F740069B78D /* TTScrollToLoadTableFooterView.xib */; };
 		C23478E71C95947100425E2F /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E11C95947100425E2F /* IISideController.m */; };
 		C23478E81C95947100425E2F /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E31C95947100425E2F /* IIViewDeckController.m */; };
 		C23478E91C95947100425E2F /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E51C95947100425E2F /* IIWrapController.m */; };
@@ -183,6 +195,28 @@
 		C225E99D1C8BF8230045DF48 /* MMAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAColors.m; sourceTree = "<group>"; };
 		C225E99F1C8BF8310045DF48 /* MMAImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAImages.h; sourceTree = "<group>"; };
 		C225E9A01C8BF8310045DF48 /* MMAImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAImages.m; sourceTree = "<group>"; };
+		C22DE89D1C980B670069B78D /* sr_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sr_refresh.png; sourceTree = "<group>"; };
+		C22DE89E1C980B670069B78D /* sr_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2x.png"; sourceTree = "<group>"; };
+		C22DE89F1C980B670069B78D /* SRSlimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRSlimeView.h; sourceTree = "<group>"; };
+		C22DE8A01C980B670069B78D /* SRSlimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRSlimeView.m; sourceTree = "<group>"; };
+		C22DE8A11C980B670069B78D /* SRRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRefreshView.h; sourceTree = "<group>"; };
+		C22DE8A21C980B670069B78D /* SRRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRefreshView.m; sourceTree = "<group>"; };
+		C22DE8A31C980B670069B78D /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
+		C22DE8A81C980CCC0069B78D /* sr_refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@3x.png"; sourceTree = "<group>"; };
+		C22DE8AB1C98164D0069B78D /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		C22DE8AC1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		C22DE8AD1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		C22DE8AE1C98164D0069B78D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		C22DE8AF1C98164D0069B78D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		C22DE8B41C9845C90069B78D /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		C22DE8B51C9845C90069B78D /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		C22DE8B61C9845C90069B78D /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		C22DE8B71C9845C90069B78D /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		C22DE8B81C9845C90069B78D /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		C22DE8B91C9845C90069B78D /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		C22DE8BD1C984F740069B78D /* TTScrollToLoadTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTScrollToLoadTableFooterView.h; sourceTree = "<group>"; };
+		C22DE8BE1C984F740069B78D /* TTScrollToLoadTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTScrollToLoadTableFooterView.m; sourceTree = "<group>"; };
+		C22DE8BF1C984F740069B78D /* TTScrollToLoadTableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTScrollToLoadTableFooterView.xib; sourceTree = "<group>"; };
 		C23478E01C95947100425E2F /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
 		C23478E11C95947100425E2F /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
 		C23478E21C95947100425E2F /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
@@ -483,6 +517,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C22DE8911C97BAF40069B78D /* SlimeRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C22DE89D1C980B670069B78D /* sr_refresh.png */,
+				C22DE89E1C980B670069B78D /* sr_refresh@2x.png */,
+				C22DE8A81C980CCC0069B78D /* sr_refresh@3x.png */,
+				C22DE89F1C980B670069B78D /* SRSlimeView.h */,
+				C22DE8A01C980B670069B78D /* SRSlimeView.m */,
+				C22DE8A11C980B670069B78D /* SRRefreshView.h */,
+				C22DE8A21C980B670069B78D /* SRRefreshView.m */,
+				C22DE8A31C980B670069B78D /* SRDefine.h */,
+			);
+			path = SlimeRefresh;
+			sourceTree = "<group>";
+		};
+		C22DE8AA1C98164D0069B78D /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C22DE8AB1C98164D0069B78D /* SVPullToRefresh.h */,
+				C22DE8AC1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.h */,
+				C22DE8AD1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m */,
+				C22DE8AE1C98164D0069B78D /* UIScrollView+SVPullToRefresh.h */,
+				C22DE8AF1C98164D0069B78D /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
+		C22DE8B31C9845C90069B78D /* RESideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C22DE8B41C9845C90069B78D /* RECommonFunctions.h */,
+				C22DE8B51C9845C90069B78D /* RECommonFunctions.m */,
+				C22DE8B61C9845C90069B78D /* RESideMenu.h */,
+				C22DE8B71C9845C90069B78D /* RESideMenu.m */,
+				C22DE8B81C9845C90069B78D /* UIViewController+RESideMenu.h */,
+				C22DE8B91C9845C90069B78D /* UIViewController+RESideMenu.m */,
+			);
+			path = RESideMenu;
+			sourceTree = "<group>";
+		};
 		C23478DF1C95947100425E2F /* ViewDeck */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +700,8 @@
 		C25668891C8C2D4B009F370E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C22DE8B31C9845C90069B78D /* RESideMenu */,
+				C22DE8AA1C98164D0069B78D /* SVPullToRefresh */,
 				C260669D1C907AF200F5A29C /* CornerRadiusCategory */,
 				C274472A1C8D4EDF0027A515 /* Categories */,
 				C256688A1C8C2DA3009F370E /* UIUtils */,
@@ -912,9 +988,13 @@
 		C28A0D7C1C8AFBBF0098614F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C22DE8911C97BAF40069B78D /* SlimeRefresh */,
 				C27447411C8DA1490027A515 /* TaskTableViewSectionView.h */,
 				C27447421C8DA1490027A515 /* TaskTableViewSectionView.m */,
 				C27447441C8DA24C0027A515 /* TaskTableViewSectionView.xib */,
+				C22DE8BD1C984F740069B78D /* TTScrollToLoadTableFooterView.h */,
+				C22DE8BE1C984F740069B78D /* TTScrollToLoadTableFooterView.m */,
+				C22DE8BF1C984F740069B78D /* TTScrollToLoadTableFooterView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1200,6 +1280,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C22DE8C11C984F740069B78D /* TTScrollToLoadTableFooterView.xib in Resources */,
+				C22DE8A41C980B670069B78D /* sr_refresh.png in Resources */,
+				C22DE8A51C980B670069B78D /* sr_refresh@2x.png in Resources */,
+				C22DE8A91C980CCC0069B78D /* sr_refresh@3x.png in Resources */,
 				C27447541C8DB3540027A515 /* AddTaskViewController.xib in Resources */,
 				C298E58F1C8F058800618AAE /* InfoPlist.strings in Resources */,
 				C2CCF7711C8FE82F00F806CD /* MMADatePickerActivityViewController.xib in Resources */,
@@ -1249,6 +1333,8 @@
 				C27447251C8D4C580027A515 /* UserCenterViewController.m in Sources */,
 				C28A0E301C8AFD4A0098614F /* UIImage+GIF.m in Sources */,
 				C2CCF7B11C90702100F806CD /* NSObject+MJCoding.m in Sources */,
+				C22DE8C01C984F740069B78D /* TTScrollToLoadTableFooterView.m in Sources */,
+				C22DE8B11C98164D0069B78D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				C25668671C8C0F20009F370E /* MASCompositeConstraint.m in Sources */,
 				C24C5D831C916879007A4FAB /* NSArray+JSONSerializedString.m in Sources */,
 				C2D65FB51C8B0050008BC07B /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
@@ -1267,6 +1353,7 @@
 				C2CCF7821C8FF88900F806CD /* NSString+URLEncode.m in Sources */,
 				C24C5D8B1C9168B7007A4FAB /* NSMutableDictionary+Setter.m in Sources */,
 				C28A0E271C8AFD4A0098614F /* NSData+ImageContentType.m in Sources */,
+				C22DE8BA1C9845C90069B78D /* RECommonFunctions.m in Sources */,
 				C2CCF7B41C90702100F806CD /* NSString+MJExtension.m in Sources */,
 				C2CCF7AE1C90702100F806CD /* MJPropertyKey.m in Sources */,
 				C225E9A11C8BF8310045DF48 /* MMAImages.m in Sources */,
@@ -1290,6 +1377,7 @@
 				C274472D1C8D4EFC0027A515 /* UINavigationBar+Utils.m in Sources */,
 				C24C5DA01C918C70007A4FAB /* ArrangeModel.m in Sources */,
 				C274473A1C8D778E0027A515 /* TaskListViewController.m in Sources */,
+				C22DE8BC1C9845C90069B78D /* UIViewController+RESideMenu.m in Sources */,
 				C28A0E311C8AFD4A0098614F /* UIImage+MultiFormat.m in Sources */,
 				C2CCF7B21C90702100F806CD /* NSObject+MJKeyValue.m in Sources */,
 				C2D65FAB1C8B0050008BC07B /* MTLReflection.m in Sources */,
@@ -1304,6 +1392,7 @@
 				C2CCF7B31C90702100F806CD /* NSObject+MJProperty.m in Sources */,
 				C24C5D9D1C9188B3007A4FAB /* TaskModel.m in Sources */,
 				C26066A31C907B1400F5A29C /* ZYImageView.m in Sources */,
+				C22DE8BB1C9845C90069B78D /* RESideMenu.m in Sources */,
 				C28A0E321C8AFD4A0098614F /* UIImage+WebP.m in Sources */,
 				C225E9941C8BF7550045DF48 /* UIView+Utils.m in Sources */,
 				C2D65FAA1C8B0050008BC07B /* MTLModel.m in Sources */,
@@ -1335,6 +1424,7 @@
 				C26A0ADC1C4B9A3D003AA7EF /* AppDelegate.m in Sources */,
 				C24C5DBB1C9193AE007A4FAB /* AFNetworkReachabilityManager.m in Sources */,
 				C2CCF7881C8FFA2E00F806CD /* NSDateComponents+Utils.m in Sources */,
+				C22DE8A61C980B670069B78D /* SRSlimeView.m in Sources */,
 				C2CCF7B01C90702100F806CD /* NSObject+MJClass.m in Sources */,
 				C28A0E2A1C8AFD4A0098614F /* SDWebImageDecoder.m in Sources */,
 				C2CCF77E1C8FF87400F806CD /* NSString+Utils.m in Sources */,
@@ -1350,6 +1440,7 @@
 				C256686A1C8C0F20009F370E /* MASLayoutConstraint.m in Sources */,
 				C26A0AD91C4B9A3D003AA7EF /* main.m in Sources */,
 				C24C5DBD1C9193AE007A4FAB /* AFURLConnectionOperation.m in Sources */,
+				C22DE8B01C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				C25668701C8C0F20009F370E /* ViewController+MASAdditions.m in Sources */,
 				C225E9951C8BF7550045DF48 /* UIViewController+Utils.m in Sources */,
 				C24C5DA31C919286007A4FAB /* MMASyncManager.m in Sources */,
@@ -1364,6 +1455,7 @@
 				C28A0E2B1C8AFD4A0098614F /* SDWebImageDownloader.m in Sources */,
 				C2D65FAE1C8B0050008BC07B /* NSArray+MTLManipulationAdditions.m in Sources */,
 				C25668681C8C0F20009F370E /* MASConstraint.m in Sources */,
+				C22DE8A71C980B670069B78D /* SRRefreshView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

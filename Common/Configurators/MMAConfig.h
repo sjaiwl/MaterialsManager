@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 
 //device
 #if TARGET_OS_IOS
@@ -40,12 +41,50 @@
 
 #define SYSTEM_VERSION_IOS_9_0_AND_LATER SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")
 
-//window
-#define CURRENT_WINDOW [[[UIApplication sharedApplication] delegate] window]
+// Orientation
+
+#define CURRENT_STATUS_BAR_ORIENTATION ([[UIApplication sharedApplication] statusBarOrientation])
+#define CURRENT_INTERFACE_ORIENTATION_IS_PORTRAIT                                                  \
+UIInterfaceOrientationIsPortrait(CURRENT_STATUS_BAR_ORIENTATION)
+#define CURRENT_INTERFACE_ORIENTATION_IS_LANDSCAPE                                                 \
+UIInterfaceOrientationIsLandscape(CURRENT_STATUS_BAR_ORIENTATION)
+
+#define INTERFACE_ORIENTATION_IS_PORTRAIT(interfaceOrientation)                                    \
+(UIInterfaceOrientationPortrait == interfaceOrientation                                        \
+|| UIInterfaceOrientationPortraitUpsideDown == interfaceOrientation)
+#define INTERFACE_ORIENTATION_IS_LANDSCAPE(interfaceOrientation)                                   \
+(UIInterfaceOrientationLandscapeLeft == interfaceOrientation                                   \
+|| UIInterfaceOrientationLandscapeRight == interfaceOrientation)
 
 // Screen bounds
 #define IPHONE_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define IPHONE_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define PORTRAIT_SCREEN_WIDTH (TARGET_DEVICE_IPHONE ? IPHONE_SCREEN_WIDTH : 768)
+#define PORTRAIT_SCREEN_HEIGHT (TARGET_DEVICE_IPHONE ? IPHONE_SCREEN_HEIGHT : 1024)
+
+#define LANDSCAPE_SCREEN_WIDTH (TARGET_DEVICE_IPHONE ? IPHONE_SCREEN_HEIGHT : 1024)
+#define LANDSCAPE_SCREEN_HEIGHT (TARGET_DEVICE_IPHONE ? IPHONE_SCREEN_WIDTH : 768)
+
+#define CURRENT_SCREEN_WIDTH                                                                       \
+(CURRENT_INTERFACE_ORIENTATION_IS_PORTRAIT ? PORTRAIT_SCREEN_WIDTH : LANDSCAPE_SCREEN_WIDTH)
+
+#define SCREEN_WIDTH(interfaceOrientation)                                                         \
+(INTERFACE_ORIENTATION_IS_PORTRAIT(interfaceOrientation) ? PORTRAIT_SCREEN_WIDTH               \
+: LANDSCAPE_SCREEN_WIDTH)
+
+#define CURRENT_SCREEN_HEIGHT                                                                      \
+(CURRENT_INTERFACE_ORIENTATION_IS_PORTRAIT ? PORTRAIT_SCREEN_HEIGHT : LANDSCAPE_SCREEN_HEIGHT)
+#define SCREEN_HEIGHT(interfaceOrientation)                                                        \
+(INTERFACE_ORIENTATION_IS_PORTRAIT(interfaceOrientation) ? PORTRAIT_SCREEN_HEIGHT              \
+: LANDSCAPE_SCREEN_HEIGHT)
+
+#define CURRENT_WINDOW [[[UIApplication sharedApplication] delegate] window]
+
+#define CURRENT_WINDOW_WIDTH                                                                       \
+((SYSTEM_VERSION_IOS_9_0_AND_LATER && TARGET_DEVICE_IPAD)                                      \
+? CGRectGetWidth([AppDelegate getInstance].window.bounds)                                          \
+: CURRENT_SCREEN_WIDTH)
 
 #define LEFT_CONTAINER_VIEW_WIDTH (TARGET_DEVICE_IPHONE ? (IPHONE_SCREEN_WIDTH - 44) : 320)
 

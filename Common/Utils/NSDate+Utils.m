@@ -138,6 +138,10 @@
     return [[[self class] hhmmssDateFormatter] stringFromDate:self];
 }
 
+- (NSString *)stringForTimeYYYYMMDDHHMMSS{
+    return [[[self class] yyyyMMddHHmmssDateFormatter] stringFromDate:self];
+}
+
 - (NSString *)yyyyMMddWithTimeZone
 {
     NSCalendar *currentCalendar = [[self class] currentCalendar];
@@ -234,6 +238,17 @@
         yyyyMMddDateFormatter.dateFormat = @"yyyy-MM-dd";
     }
     return yyyyMMddDateFormatter;
+}
+
++ (NSDateFormatter *)yyyyMMddHHmmssDateFormatter
+{
+    static NSDateFormatter *yyyyMMddHHmmssDateFormatter = nil;
+    if (yyyyMMddHHmmssDateFormatter == nil) {
+        yyyyMMddHHmmssDateFormatter = [[NSDateFormatter alloc] init];
+        yyyyMMddHHmmssDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+        yyyyMMddHHmmssDateFormatter.dateFormat = @"yyyy-MM-dd";
+    }
+    return yyyyMMddHHmmssDateFormatter;
 }
 
 #pragma mark -

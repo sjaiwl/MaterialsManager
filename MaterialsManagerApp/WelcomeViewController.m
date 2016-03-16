@@ -22,6 +22,7 @@
 #import "AccountModel.h"
 #import "IIViewDeckController.h"
 #import "MaterialsLeftViewController.h"
+#import "RESideMenu.h"
 
 @interface WelcomeViewController ()<UITextFieldDelegate>
 //app info
@@ -39,7 +40,8 @@
 
 @property (assign, nonatomic, getter=isShowingActivity) BOOL showingActivity;
 
-@property (nonatomic, strong) IIViewDeckController *deckController;
+//@property (nonatomic, strong) IIViewDeckController *deckController;
+@property (nonatomic, strong) RESideMenu *sideMenuController;
 @property (nonatomic, strong) MaterialsCollectionViewController *materialsCollectionViewController;
 @property (nonatomic, strong) MaterialsLeftViewController *materialsLeftViewController;
 
@@ -244,16 +246,29 @@
     [self savePreferenceValue];
 }
 - (void)loginSuccess{
+    DLog(@"account:%@", [MMAAccountManager sharedManager].accountModel);
     [self hideToastWithIndicatorView];
 
     MMANavViewController *navCenter = [[MMANavViewController alloc] initWithRootViewController:self.materialsCollectionViewController];
 
-    self.deckController = [[IIViewDeckController alloc] initWithCenterViewController:navCenter leftViewController:self.materialsLeftViewController];
-    self.deckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
-    self.deckController.delegateMode = IIViewDeckDelegateAndSubControllers;
-    self.deckController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    self.deckController = [[IIViewDeckController alloc] initWithCenterViewController:navCenter leftViewController:self.materialsLeftViewController];
+//    self.deckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+//    self.deckController.delegateMode = IIViewDeckDelegateOnly;
+//    self.deckController.panningMode = IIViewDeckAllViewsPanning;
+//    self.deckController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
-    [self presentViewController:self.deckController animated:YES completion:nil];
+
+    self.sideMenuController = [[RESideMenu alloc] initWithContentViewController:navCenter leftMenuViewController:self.materialsLeftViewController rightMenuViewController:nil];
+    self.sideMenuController.menuPreferredStatusBarStyle = UIStatusBarStyleLightContent;
+    self.sideMenuController.contentViewShadowColor = MMA_BLACK_DARK;
+    self.sideMenuController.contentViewShadowOffset = CGSizeMake(0, 0);
+    self.sideMenuController.contentViewShadowOpacity = 0.6;
+    self.sideMenuController.contentViewShadowRadius = 12;
+    self.sideMenuController.contentViewShadowEnabled = YES;
+    self.sideMenuController.scaleBackgroundImageView = YES;
+    self.sideMenuController.backgroundImage = [UIImage imageWithColor:MMA_BLACK_DARK];
+    self.sideMenuController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:self.sideMenuController animated:YES completion:nil];
 }
 
 - (void)loginFailed{
@@ -313,6 +328,7 @@
 - (void)mainNavigationControllerDismissed:(NSNotification *)notification{
     self.materialsCollectionViewController = nil;
     self.materialsLeftViewController = nil;
-    self.deckController = nil;
+//    self.deckController = nil;
+    self.sideMenuController = nil;
 }
 @end

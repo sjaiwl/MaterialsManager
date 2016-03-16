@@ -89,8 +89,8 @@ static NSString *const kMMAMaterialsLeftViewCellReuseIdentifier = @"kMMAMaterial
     self.headView.backgroundColor = MMA_BLACK_DARK;
     self.headImageView.image = [UIImage imageNamed:@"default_avatar_image"];
     [self.headImageView zy_cornerRadiusRoundingRect];
-    self.headNameLabel.text = self.account.saccount ? self.account.saccount : @"panhuohua";
-    self.headBirthdayLabel.text = self.account.sbirth ? self.account.sbirth.stringForTimeYYYYMMDD : @"2015-09-21";
+    self.headNameLabel.text = self.account.sname ? self.account.sname : @"";
+    self.headBirthdayLabel.text = self.account.sbirth ? self.account.sbirth.stringForTimeYYYYMMDD : @"";
 }
 
 - (void)setupTablebViews{
@@ -139,6 +139,11 @@ static NSString *const kMMAMaterialsLeftViewCellReuseIdentifier = @"kMMAMaterial
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //清除tableview选中效果
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - 返回状态栏颜色
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 /*

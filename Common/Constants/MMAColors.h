@@ -11,14 +11,16 @@
 
 
 #define MMA_BLUE_LIGHT [UIColor colorWithHexString:@"97bef1"]
-#define MMA_BLUE(a)    [UIColor colorWithHexString:@"0000ff" alpha:a]
+#define MMA_BLUE(a)    [UIColor colorWithHexString:@"2275c2" alpha:a]
+
+#define MMA_ORANGE(a) [UIColor colorWithHexString:@"fd9b27" alpha:a]
 
 #define MMA_BLACK_LIGHT [UIColor colorWithHexString:@"6b6d70"]
 #define MMA_BLACK(a)    [UIColor colorWithHexString:@"292933" alpha:a]
 #define MMA_BLACK_DARK [UIColor colorWithHexString:@"25252d"]
 
 #define MMA_RED_LIGHT [UIColor colorWithHexString:@"ca0814"]
-#define MMA_RED(a) [UIColor colorWithHexString:@"ff0000" alpha:a]
+#define MMA_RED(a) [UIColor colorWithHexString:@"fc3d39" alpha:a]
 
 #define MMA_GRAY_LIGHT [UIColor colorWithHexString:@"f3f3f3"]
 #define MMA_GRAY_CENTER [UIColor colorWithHexString:@"848487"]

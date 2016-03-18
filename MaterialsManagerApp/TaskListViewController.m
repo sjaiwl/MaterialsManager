@@ -23,7 +23,7 @@
 #import "TTScrollToLoadTableFooterView.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
 
-@interface TaskListViewController ()<SRRefreshDelegate>
+@interface TaskListViewController ()<SRRefreshDelegate,SWTableViewCellDelegate>
 //details controller
 @property (nonatomic, strong) TaskDetailsViewController *taskDetailsController;
 //add task controller
@@ -40,6 +40,7 @@
 @property (nonatomic, strong) TTScrollToLoadTableFooterView *loadingFooterView;
 @property (nonatomic, strong) TTScrollToLoadTableFooterView *viewMoreFooterView;
 
+@property (nonatomic, strong) SWTableViewCell *currentSelectedCell;
 @end
 
 @implementation TaskListViewController
@@ -142,11 +143,19 @@
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([TaskTableViewSectionView class]) bundle:nil] forCellReuseIdentifier:kMMATaskTableViewSectionViewIdentifier];
     //add slime view
     [self.tableView addSubview:self.slimeRefreshView];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     //update slime view
     [self.slimeRefreshView update:64];
-    //add scroll
+    //add scroll footer
     [self addIndiniteScrollingView];
+    //add tap gesture
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
+    [self.tableView addGestureRecognizer:tapGesture];
+}
+
+- (void)tapGestureAction:(UITapGestureRecognizer *)sender{
+    [self hideCurrentCellButtonView];
 }
 
 - (void)addIndiniteScrollingView{
@@ -163,8 +172,6 @@
 
     self.tableView.infiniteScrollingView.enabled = YES;
     self.tableView.showsInfiniteScrolling = YES;
-
-    [self.tableView triggerInfiniteScrolling];
 }
 
 #pragma mark - Table view data source
@@ -184,7 +191,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMMATaskTableViewCellIdentifier forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    cell.rightUtilityButtons = [self rightButtonsArray];
+    cell.delegate = self;
     // Configure the cell...
     TaskModel *model = self.taskModelArray[indexPath.row];
     [cell configCellWithTaskModel:model];
@@ -208,9 +217,20 @@
     return nil;
 }
 
-#pragma mark - Tableview delegate
+#pragma mark - TableView delegate
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self isCurrentCellButtonShow]) {
+        [self hideCurrentCellButtonView];
+        return NO;
+    }
+    return YES;
+}
+
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //清除tableview选中效果
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // Navigation logic may go here, for example:
     // Create the next view controller.
     TaskModel *model = self.taskModelArray[indexPath.row];
@@ -247,13 +267,67 @@
     self.tableView.showsVerticalScrollIndicator = YES;
 }
 
-#pragma mark - do load more task
+#pragma mark -load moretask
 - (void)doLoadingMoreTask{
     __weak TaskListViewController *weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
         weakSelf.tableView.showsInfiniteScrolling = YES;
     });
+}
+
+#pragma mark - SWTableViewCellDelegate
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    switch (index) {
+        case 0:
+            DLog(@"edit cell task");
+            break;
+
+        case 1:
+            DLog(@"dele cell task");
+            break;
+
+        default:
+            break;
+    }
+}
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell scrollingToState:(SWCellState)state{
+    if (kCellStateCenter != state) {
+        self.currentSelectedCell = cell;
+    }
+}
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell{
+    return YES;
+}
+- (BOOL)swipeableTableViewCell:(SWTableViewCell *)cell canSwipeToState:(SWCellState)state{
+    return YES;
+}
+
+#pragma mark - SWTableViewCell Right Buttons
+- (NSArray *)rightButtonsArray
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:MMA_ORANGE(1)
+                                                title:@"编辑"];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:MMA_RED(1)
+                                                title:@"删除"];
+
+    return rightUtilityButtons;
+}
+
+#pragma mark - close cell button
+- (void)hideCurrentCellButtonView{
+    if ([self isCurrentCellButtonShow]) {
+        [self.currentSelectedCell hideUtilityButtonsAnimated:YES];
+        self.currentSelectedCell = nil;
+        return;
+    }
+}
+
+- (BOOL)isCurrentCellButtonShow{
+    return self.currentSelectedCell && ![self.currentSelectedCell isUtilityButtonsHidden];
 }
 /*
 #pragma mark - Navigation

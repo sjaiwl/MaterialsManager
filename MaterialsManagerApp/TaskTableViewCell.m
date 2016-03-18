@@ -11,20 +11,21 @@
 #import "MMAColors.h"
 #import "TaskModel.h"
 #import "MMALogs.h"
+#import "UIImageView+CornerRadius.h"
 
 NSString *const kMMATaskTableViewCellIdentifier = @"kMMATaskTableViewCellIdentifier";
-NSInteger const kMMATaskTableViewCellHeight = 200;
+NSInteger const kMMATaskTableViewCellHeight = 100;
 
 @interface TaskTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *backGroundView;
 
-@property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *peopleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *taskLabel;
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cycleLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 @end
 
@@ -32,9 +33,12 @@ NSInteger const kMMATaskTableViewCellHeight = 200;
 
 - (void)awakeFromNib {
     // Initialization code
-    self.backGroundView.cornerRadius_MMA = 5;
-    self.backGroundView.layer.borderColor = MMA_BLACK_LIGHT.CGColor;
-    self.backGroundView.layer.borderWidth = 0.6;
+    self.peopleImageView.cornerRadius_MMA = self.peopleImageView.frame.size.height / 2.0;
+    self.peopleLabel.textColor = MMA_BLUE(1);
+    self.dateLabel.textColor = MMA_BLACK(0.5);
+    self.taskLabel.textColor = MMA_BLACK(1);
+    self.durationLabel.textColor = MMA_BLACK(1);
+    self.bottomView.backgroundColor = MMA_BLACK(0.2);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

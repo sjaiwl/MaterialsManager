@@ -20,6 +20,7 @@
 #import "MMAConfig.h"
 #import "SRRefreshView.h"
 #import "RESideMenu.h"
+#import "ODRefreshControl.h"
 
 @interface MaterialsCollectionViewController ()<UICollectionViewDelegateFlowLayout,SRRefreshDelegate>
 
@@ -29,6 +30,7 @@
 
 //view controller
 @property (nonatomic, strong) UserCenterViewController *userCenterViewController;
+@property (nonatomic, strong) TaskListViewController *taskListViewController;
 
 @property (nonatomic, strong) SRRefreshView *slimeRefreshView;
 // Sync
@@ -79,6 +81,13 @@
         _userCenterViewController = [UserCenterViewController loadNib];
     }
     return _userCenterViewController;
+}
+
+- (TaskListViewController *)taskListViewController{
+    if (!_taskListViewController) {
+        _taskListViewController = [TaskListViewController loadNib];
+    }
+    return _taskListViewController;
 }
 
 - (SRRefreshView *)slimeRefreshView {
@@ -178,9 +187,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        TaskListViewController *taskListViewController = [TaskListViewController loadNib];
         //push
-        [self.navigationController pushViewController:taskListViewController animated:YES];
+        [self.navigationController pushViewController:self.taskListViewController animated:YES];
     }
 }
 

@@ -19,13 +19,20 @@
 		C22DE8A61C980B670069B78D /* SRSlimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8A01C980B670069B78D /* SRSlimeView.m */; };
 		C22DE8A71C980B670069B78D /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8A21C980B670069B78D /* SRRefreshView.m */; };
 		C22DE8A91C980CCC0069B78D /* sr_refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DE8A81C980CCC0069B78D /* sr_refresh@3x.png */; };
-		C22DE8B01C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8AD1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m */; };
-		C22DE8B11C98164D0069B78D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8AF1C98164D0069B78D /* UIScrollView+SVPullToRefresh.m */; };
 		C22DE8BA1C9845C90069B78D /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8B51C9845C90069B78D /* RECommonFunctions.m */; };
 		C22DE8BB1C9845C90069B78D /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8B71C9845C90069B78D /* RESideMenu.m */; };
 		C22DE8BC1C9845C90069B78D /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8B91C9845C90069B78D /* UIViewController+RESideMenu.m */; };
 		C22DE8C01C984F740069B78D /* TTScrollToLoadTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8BE1C984F740069B78D /* TTScrollToLoadTableFooterView.m */; };
 		C22DE8C11C984F740069B78D /* TTScrollToLoadTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22DE8BF1C984F740069B78D /* TTScrollToLoadTableFooterView.xib */; };
+		C22DE8CB1C9969400069B78D /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8CA1C9969400069B78D /* ODRefreshControl.m */; };
+		C22DE8D81C996CFE0069B78D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8D51C996CFE0069B78D /* UIScrollView+SVInfiniteScrolling.m */; };
+		C22DE8D91C996CFE0069B78D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE8D71C996CFE0069B78D /* UIScrollView+SVPullToRefresh.m */; };
+		C22DE91D1C9986060069B78D /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE9121C9986060069B78D /* NSMutableArray+SWUtilityButtons.m */; };
+		C22DE91E1C9986060069B78D /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE9141C9986060069B78D /* SWCellScrollView.m */; };
+		C22DE91F1C9986060069B78D /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE9161C9986060069B78D /* SWLongPressGestureRecognizer.m */; };
+		C22DE9201C9986060069B78D /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE9181C9986060069B78D /* SWTableViewCell.m */; };
+		C22DE9211C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE91A1C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.m */; };
+		C22DE9221C9986060069B78D /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22DE91C1C9986060069B78D /* SWUtilityButtonView.m */; };
 		C23478E71C95947100425E2F /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E11C95947100425E2F /* IISideController.m */; };
 		C23478E81C95947100425E2F /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E31C95947100425E2F /* IIViewDeckController.m */; };
 		C23478E91C95947100425E2F /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23478E51C95947100425E2F /* IIWrapController.m */; };
@@ -203,11 +210,6 @@
 		C22DE8A21C980B670069B78D /* SRRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRefreshView.m; sourceTree = "<group>"; };
 		C22DE8A31C980B670069B78D /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
 		C22DE8A81C980CCC0069B78D /* sr_refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@3x.png"; sourceTree = "<group>"; };
-		C22DE8AB1C98164D0069B78D /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
-		C22DE8AC1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
-		C22DE8AD1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
-		C22DE8AE1C98164D0069B78D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
-		C22DE8AF1C98164D0069B78D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		C22DE8B41C9845C90069B78D /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		C22DE8B51C9845C90069B78D /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		C22DE8B61C9845C90069B78D /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -217,6 +219,25 @@
 		C22DE8BD1C984F740069B78D /* TTScrollToLoadTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTScrollToLoadTableFooterView.h; sourceTree = "<group>"; };
 		C22DE8BE1C984F740069B78D /* TTScrollToLoadTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTScrollToLoadTableFooterView.m; sourceTree = "<group>"; };
 		C22DE8BF1C984F740069B78D /* TTScrollToLoadTableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTScrollToLoadTableFooterView.xib; sourceTree = "<group>"; };
+		C22DE8C91C9969400069B78D /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		C22DE8CA1C9969400069B78D /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
+		C22DE8D31C996CFE0069B78D /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		C22DE8D41C996CFE0069B78D /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		C22DE8D51C996CFE0069B78D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		C22DE8D61C996CFE0069B78D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		C22DE8D71C996CFE0069B78D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		C22DE9111C9986060069B78D /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
+		C22DE9121C9986060069B78D /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
+		C22DE9131C9986060069B78D /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
+		C22DE9141C9986060069B78D /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
+		C22DE9151C9986060069B78D /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		C22DE9161C9986060069B78D /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		C22DE9171C9986060069B78D /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
+		C22DE9181C9986060069B78D /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		C22DE9191C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonTapGestureRecognizer.h; sourceTree = "<group>"; };
+		C22DE91A1C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
+		C22DE91B1C9986060069B78D /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
+		C22DE91C1C9986060069B78D /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
 		C23478E01C95947100425E2F /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
 		C23478E11C95947100425E2F /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
 		C23478E21C95947100425E2F /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
@@ -535,11 +556,11 @@
 		C22DE8AA1C98164D0069B78D /* SVPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				C22DE8AB1C98164D0069B78D /* SVPullToRefresh.h */,
-				C22DE8AC1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.h */,
-				C22DE8AD1C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m */,
-				C22DE8AE1C98164D0069B78D /* UIScrollView+SVPullToRefresh.h */,
-				C22DE8AF1C98164D0069B78D /* UIScrollView+SVPullToRefresh.m */,
+				C22DE8D31C996CFE0069B78D /* SVPullToRefresh.h */,
+				C22DE8D41C996CFE0069B78D /* UIScrollView+SVInfiniteScrolling.h */,
+				C22DE8D51C996CFE0069B78D /* UIScrollView+SVInfiniteScrolling.m */,
+				C22DE8D61C996CFE0069B78D /* UIScrollView+SVPullToRefresh.h */,
+				C22DE8D71C996CFE0069B78D /* UIScrollView+SVPullToRefresh.m */,
 			);
 			path = SVPullToRefresh;
 			sourceTree = "<group>";
@@ -555,6 +576,34 @@
 				C22DE8B91C9845C90069B78D /* UIViewController+RESideMenu.m */,
 			);
 			path = RESideMenu;
+			sourceTree = "<group>";
+		};
+		C22DE8C81C9969400069B78D /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				C22DE8C91C9969400069B78D /* ODRefreshControl.h */,
+				C22DE8CA1C9969400069B78D /* ODRefreshControl.m */,
+			);
+			path = ODRefreshControl;
+			sourceTree = "<group>";
+		};
+		C22DE8DA1C9972BA0069B78D /* SWTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C22DE9111C9986060069B78D /* NSMutableArray+SWUtilityButtons.h */,
+				C22DE9121C9986060069B78D /* NSMutableArray+SWUtilityButtons.m */,
+				C22DE9131C9986060069B78D /* SWCellScrollView.h */,
+				C22DE9141C9986060069B78D /* SWCellScrollView.m */,
+				C22DE9151C9986060069B78D /* SWLongPressGestureRecognizer.h */,
+				C22DE9161C9986060069B78D /* SWLongPressGestureRecognizer.m */,
+				C22DE9171C9986060069B78D /* SWTableViewCell.h */,
+				C22DE9181C9986060069B78D /* SWTableViewCell.m */,
+				C22DE9191C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.h */,
+				C22DE91A1C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.m */,
+				C22DE91B1C9986060069B78D /* SWUtilityButtonView.h */,
+				C22DE91C1C9986060069B78D /* SWUtilityButtonView.m */,
+			);
+			path = SWTableViewCell;
 			sourceTree = "<group>";
 		};
 		C23478DF1C95947100425E2F /* ViewDeck */ = {
@@ -700,6 +749,8 @@
 		C25668891C8C2D4B009F370E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C22DE8DA1C9972BA0069B78D /* SWTableViewCell */,
+				C22DE8C81C9969400069B78D /* ODRefreshControl */,
 				C22DE8B31C9845C90069B78D /* RESideMenu */,
 				C22DE8AA1C98164D0069B78D /* SVPullToRefresh */,
 				C260669D1C907AF200F5A29C /* CornerRadiusCategory */,
@@ -1334,7 +1385,6 @@
 				C28A0E301C8AFD4A0098614F /* UIImage+GIF.m in Sources */,
 				C2CCF7B11C90702100F806CD /* NSObject+MJCoding.m in Sources */,
 				C22DE8C01C984F740069B78D /* TTScrollToLoadTableFooterView.m in Sources */,
-				C22DE8B11C98164D0069B78D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				C25668671C8C0F20009F370E /* MASCompositeConstraint.m in Sources */,
 				C24C5D831C916879007A4FAB /* NSArray+JSONSerializedString.m in Sources */,
 				C2D65FB51C8B0050008BC07B /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
@@ -1401,10 +1451,13 @@
 				C2D65FAF1C8B0050008BC07B /* NSDictionary+MTLJSONKeyPath.m in Sources */,
 				C24C5DC31C91A6FF007A4FAB /* MBProgressHUD.m in Sources */,
 				C24C5D941C9169F0007A4FAB /* TTArrayUtils.m in Sources */,
+				C22DE8CB1C9969400069B78D /* ODRefreshControl.m in Sources */,
 				C2CCF7911C90004200F806CD /* MMAConfig.m in Sources */,
+				C22DE9201C9986060069B78D /* SWTableViewCell.m in Sources */,
 				C24C5DBA1C9193AE007A4FAB /* AFHTTPSessionManager.m in Sources */,
 				C2D65FB21C8B0050008BC07B /* NSError+MTLModelException.m in Sources */,
 				C274473F1C8D7D7C0027A515 /* TaskTableViewCell.m in Sources */,
+				C22DE9211C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				C2CCF7941C90015F00F806CD /* MMAHTTPManager.m in Sources */,
 				C256686D1C8C0F20009F370E /* NSArray+MASAdditions.m in Sources */,
 				C28A0E2D1C8AFD4A0098614F /* SDWebImageManager.m in Sources */,
@@ -1426,6 +1479,7 @@
 				C2CCF7881C8FFA2E00F806CD /* NSDateComponents+Utils.m in Sources */,
 				C22DE8A61C980B670069B78D /* SRSlimeView.m in Sources */,
 				C2CCF7B01C90702100F806CD /* NSObject+MJClass.m in Sources */,
+				C22DE91E1C9986060069B78D /* SWCellScrollView.m in Sources */,
 				C28A0E2A1C8AFD4A0098614F /* SDWebImageDecoder.m in Sources */,
 				C2CCF77E1C8FF87400F806CD /* NSString+Utils.m in Sources */,
 				C2D65FAD1C8B0050008BC07B /* MTLValueTransformer.m in Sources */,
@@ -1437,12 +1491,15 @@
 				C274474E1C8DAD160027A515 /* TaskDetailsTableViewCell.m in Sources */,
 				C256686F1C8C0F20009F370E /* View+MASAdditions.m in Sources */,
 				C26066A21C907B1400F5A29C /* UIImageView+CornerRadius.m in Sources */,
+				C22DE8D91C996CFE0069B78D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				C256686A1C8C0F20009F370E /* MASLayoutConstraint.m in Sources */,
 				C26A0AD91C4B9A3D003AA7EF /* main.m in Sources */,
 				C24C5DBD1C9193AE007A4FAB /* AFURLConnectionOperation.m in Sources */,
-				C22DE8B01C98164D0069B78D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				C22DE8D81C996CFE0069B78D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				C25668701C8C0F20009F370E /* ViewController+MASAdditions.m in Sources */,
 				C225E9951C8BF7550045DF48 /* UIViewController+Utils.m in Sources */,
+				C22DE91D1C9986060069B78D /* NSMutableArray+SWUtilityButtons.m in Sources */,
+				C22DE91F1C9986060069B78D /* SWLongPressGestureRecognizer.m in Sources */,
 				C24C5DA31C919286007A4FAB /* MMASyncManager.m in Sources */,
 				C2CCF7781C8FF82900F806CD /* TTStringUtils.m in Sources */,
 				C2D65FA91C8B0050008BC07B /* MTLModel+NSCoding.m in Sources */,
@@ -1452,6 +1509,7 @@
 				C23478EC1C969D4600425E2F /* MaterialsLeftViewController.m in Sources */,
 				C25668771C8C14D9009F370E /* UIImage+Utils.m in Sources */,
 				C24C5DC61C91C526007A4FAB /* UIView+Toast.m in Sources */,
+				C22DE9221C9986060069B78D /* SWUtilityButtonView.m in Sources */,
 				C28A0E2B1C8AFD4A0098614F /* SDWebImageDownloader.m in Sources */,
 				C2D65FAE1C8B0050008BC07B /* NSArray+MTLManipulationAdditions.m in Sources */,
 				C25668681C8C0F20009F370E /* MASConstraint.m in Sources */,

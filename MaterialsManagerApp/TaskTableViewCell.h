@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 @class TaskModel;
 
 extern NSString *const kMMATaskTableViewCellIdentifier;
 extern NSInteger const kMMATaskTableViewCellHeight;
 
-@interface TaskTableViewCell : UITableViewCell
+@interface TaskTableViewCell : SWTableViewCell
 
 - (void)configCellWithTaskModel:(TaskModel *)taskModel;
 

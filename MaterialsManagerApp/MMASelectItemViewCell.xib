@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MMASelectItemViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_avatar_image" translatesAutoresizingMaskIntoConstraints="NO" id="KDF-c2-4vP">
+                        <rect key="frame" x="30" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="jMH-J3-ct0"/>
+                            <constraint firstAttribute="height" constant="40" id="m5E-gF-PoL"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSi-0Z-BlC">
+                        <rect key="frame" x="38" y="60" width="24" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="KDF-c2-4vP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="FfU-ez-ztW"/>
+                <constraint firstItem="FSi-0Z-BlC" firstAttribute="top" secondItem="KDF-c2-4vP" secondAttribute="bottom" constant="10" id="QTv-CD-QXn"/>
+                <constraint firstItem="FSi-0Z-BlC" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ZJ8-8s-Id1"/>
+                <constraint firstItem="KDF-c2-4vP" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="nZi-SN-odK"/>
+            </constraints>
+            <size key="customSize" width="88" height="119"/>
+            <connections>
+                <outlet property="imageView" destination="KDF-c2-4vP" id="Bu4-3F-Rrh"/>
+                <outlet property="nameLabel" destination="FSi-0Z-BlC" id="y0o-Vz-H5w"/>
+            </connections>
+            <point key="canvasLocation" x="246" y="296.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="default_avatar_image" width="120" height="120"/>
+    </resources>
+</document>

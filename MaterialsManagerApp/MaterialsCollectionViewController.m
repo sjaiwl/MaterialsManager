@@ -21,6 +21,7 @@
 #import "SRRefreshView.h"
 #import "RESideMenu.h"
 #import "ODRefreshControl.h"
+#import "MainTainListViewController.h"
 
 @interface MaterialsCollectionViewController ()<UICollectionViewDelegateFlowLayout,SRRefreshDelegate>
 
@@ -31,6 +32,7 @@
 //view controller
 @property (nonatomic, strong) UserCenterViewController *userCenterViewController;
 @property (nonatomic, strong) TaskListViewController *taskListViewController;
+@property (nonatomic ,strong) MainTainListViewController*mainTainListViewController;
 
 @property (nonatomic, strong) SRRefreshView *slimeRefreshView;
 // Sync
@@ -88,6 +90,13 @@
         _taskListViewController = [TaskListViewController loadNib];
     }
     return _taskListViewController;
+}
+
+- (MainTainListViewController *)mainTainListViewController{
+    if (!_mainTainListViewController) {
+        _mainTainListViewController = [MainTainListViewController loadNib];
+    }
+    return _mainTainListViewController;
 }
 
 - (SRRefreshView *)slimeRefreshView {
@@ -189,6 +198,8 @@
     if (indexPath.row == 0) {
         //push
         [self.navigationController pushViewController:self.taskListViewController animated:YES];
+    }else if (indexPath.row == 1){
+        [self.navigationController pushViewController:self.mainTainListViewController animated:YES];
     }
 }
 

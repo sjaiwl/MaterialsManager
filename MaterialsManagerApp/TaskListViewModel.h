@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MMABlocks.h"
 
 @interface TaskListViewModel : NSObject
 
 + (instancetype)sharedViewModel;
 
-//get current modele
-- (NSArray *)getCurrentTaskModels;
+//get current model
+- (void)getCurrentTaskModelsWithSuccessCompletionHandle:(TTResultBlockWithArray)success
+                                                     failure:(TTResultAndErrorBlock) failure;
 
 @end

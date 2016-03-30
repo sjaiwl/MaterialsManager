@@ -32,6 +32,26 @@
                    success:success failure:failure];
 }
 
+#pragma mark - Task List
+- (void)getTodayInspectionTaskListWithSiteUrl:(NSString *)siteUrl
+                                      success:(TTHTTPRequestSuccessCompletionHandler)success
+                                      failure:(TTHTTPRequestFailureCompletionHandler)failure{
+    [self getForURLString:siteUrl
+               needsToken:NO
+                  success:success
+                  failure:failure];
+}
+
+#pragma mark - MainTain List
+- (void)getMainTainListWithSiteUrl:(NSString *)siteUrl
+                           success:(TTHTTPRequestSuccessCompletionHandler)success
+                           failure:(TTHTTPRequestFailureCompletionHandler)failure{
+    [self getForURLString:siteUrl
+               needsToken:NO
+                  success:success
+                  failure:failure];
+}
+
 #pragma mark - private method
 - (NSDictionary *)customHTTPHeadersIfNeedsToken:(BOOL)needsToken
 {

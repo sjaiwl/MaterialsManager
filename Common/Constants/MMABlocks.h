@@ -11,6 +11,7 @@
 typedef void (^TTGeneralBlock)();
 typedef void (^TTIBActionBlock)(id sender);
 typedef void (^TTResultBlock)(BOOL successfully);
+typedef void (^TTResultBlockWithArray)(BOOL successfully, NSArray *result);
 typedef void (^TTDifferBlock)(BOOL hasChanges);
 typedef void (^TTResultAndDifferBlock)(BOOL successfully, BOOL hasChanges);
 typedef void (^TTResultAndErrorBlock)(BOOL successfully, NSError *error);

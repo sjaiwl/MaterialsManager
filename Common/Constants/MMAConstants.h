@@ -11,6 +11,9 @@
 //url
 #define SiteDomain @"http://120.26.214.228/hmms"
 #define LoginUrl [SiteDomain stringByAppendingString:@"/user.do?flag=login"]
+#define TaskListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getTaskList"]
+#define TodayDoneMainTainListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getTodayDoneMaintain"]
+#define NotDoneMainTainListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getNotDoneMaintain"]
 
 
 //category item id
@@ -22,8 +25,8 @@
 #define ASSET_ITEM_ID COLLECTION_ITEM_APPEND_ID(@"ASSET_ITEM_ID")
 #define TRANSFER_ITEM_ID COLLECTION_ITEM_APPEND_ID(@"TRANSFER_ITEM_ID")
 //category item name
-#define RELEASE_ITEM_NAME @"任务下达"
-#define CHECK_ITEM_NAME @"盘点任务"
+#define RELEASE_ITEM_NAME @"巡检任务"
+#define CHECK_ITEM_NAME @"维修数据"
 #define UPLOAD_ITEM_NAME @"任务上传"
 #define RECORD_ITEM_NAME @"盘点历史"
 #define ASSET_ITEM_NAME @"模糊资产"

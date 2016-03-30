@@ -15,14 +15,14 @@
     if (!self.tid) {
         self.tid = @(0);
     }
-    if (!self.staffid) {
-        self.staffid = @(0);
+    if (!self.hmmsStaffid) {
+        self.hmmsStaffid = @(0);
     }
-    if (!self.tassignsid) {
-        self.tassignsid = @(0);
+    if (!self.hmmsStaffByTassignsid) {
+        self.hmmsStaffByTassignsid = @(0);
     }
-    if (!self.specialid) {
-        self.specialid = @(0);
+    if (!self.hmmsSpecialid) {
+        self.hmmsSpecialid = @(0);
     }
 }
 
@@ -32,9 +32,12 @@
     [dict addEntriesFromDictionary:
      @{
        @"tid" : @"tid",
-       @"staffid" : @"staffid",
-       @"tassignsid" : @"tassignsid",
-       @"specialid" : @"specialid",
+       @"hmmsStaffid" : @"hmmsStaffid",
+       @"hmmsStaffName" : @"hmmsStaffName",
+       @"hmmsStaffByTassignsid" : @"hmmsStaffByTassignsid",
+       @"hmmsStaffByTassignsName" : @"hmmsStaffByTassignsName",
+       @"hmmsSpecialid" : @"hmmsSpecialid",
+       @"hmmsSpecialName" : @"hmmsSpecialName",
        @"ttype" : @"ttype",
        @"toriginaltime" : @"toriginaltime",
        @"tinspectionbegintime" : @"tinspectionbegintime",

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MMASelectItemViewController">
+            <connections>
+                <outlet property="cancelButton" destination="IaJ-U6-UR9" id="58Q-ag-9Ta"/>
+                <outlet property="collectionView" destination="tCG-MN-hkS" id="1Li-ds-GDa"/>
+                <outlet property="doneButton" destination="B2s-s4-VYa" id="TIn-ig-3tt"/>
+                <outlet property="titleLabel" destination="sip-n1-Bge" id="Yrf-tC-Pbl"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaJ-U6-UR9">
+                    <rect key="frame" x="10" y="5" width="30" height="30"/>
+                    <state key="normal" title="取消"/>
+                    <connections>
+                        <action selector="cancelAction:" destination="-1" eventType="touchUpInside" id="srZ-Ny-BjQ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更改维修人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sip-n1-Bge">
+                    <rect key="frame" x="257" y="10" width="85" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tCG-MN-hkS">
+                    <rect key="frame" x="0.0" y="41" width="600" height="209"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wax-Da-AdT">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2s-s4-VYa">
+                    <rect key="frame" x="560" y="5" width="30" height="30"/>
+                    <state key="normal" title="确定"/>
+                    <connections>
+                        <action selector="doneAction:" destination="-1" eventType="touchUpInside" id="BCZ-h8-vgp"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="B2s-s4-VYa" secondAttribute="trailing" constant="10" id="0Ia-a0-CZy"/>
+                <constraint firstItem="IaJ-U6-UR9" firstAttribute="centerY" secondItem="sip-n1-Bge" secondAttribute="centerY" id="AG8-Zs-Pye"/>
+                <constraint firstItem="sip-n1-Bge" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IRm-hJ-gWn"/>
+                <constraint firstAttribute="bottom" secondItem="tCG-MN-hkS" secondAttribute="bottom" id="OGe-JF-XAE"/>
+                <constraint firstAttribute="trailing" secondItem="tCG-MN-hkS" secondAttribute="trailing" id="PKq-fh-7Iz"/>
+                <constraint firstItem="B2s-s4-VYa" firstAttribute="centerY" secondItem="sip-n1-Bge" secondAttribute="centerY" id="Zrx-BO-7Fl"/>
+                <constraint firstItem="IaJ-U6-UR9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="qh2-GE-nbv"/>
+                <constraint firstItem="tCG-MN-hkS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="r8W-LB-Uh0"/>
+                <constraint firstItem="tCG-MN-hkS" firstAttribute="top" secondItem="sip-n1-Bge" secondAttribute="bottom" constant="10" id="rPv-TM-J0A"/>
+                <constraint firstItem="sip-n1-Bge" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="yNC-NC-HKa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

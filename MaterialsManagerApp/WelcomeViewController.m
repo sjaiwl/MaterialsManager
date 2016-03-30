@@ -207,7 +207,7 @@
         AccountModel *accountModel = [[AccountModel alloc] init];
         accountModel.saccount = self.userNameField.text;
         accountModel.spassword = self.passwordField.text;
-        accountModel.stype = @"2";
+        accountModel.stype = @"1";
         [[MMAAccountManager sharedManager] signInWithSiteUrl:LoginUrl AccountModel:accountModel completionHandler:^(MMASignInResult result) {
             [self handleSignInResult:result];
         }];

@@ -22,6 +22,8 @@
 #import "SRRefreshView.h"
 #import "TTScrollToLoadTableFooterView.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
+#import "MMAConstants.h"
+#import "UITableView+EmptyData.h"
 
 @interface TaskListViewController ()<SRRefreshDelegate,SWTableViewCellDelegate>
 //details controller
@@ -69,7 +71,7 @@
 
 - (NSArray *)taskModelArray{
     if (!_taskModelArray) {
-        _taskModelArray = [self.viewModel getCurrentTaskModels];
+        _taskModelArray = [NSArray new];
     }
     return _taskModelArray;
 }
@@ -126,14 +128,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self hideCurrentCellButtonView];
+}
+
 #pragma mark - setup subviews
 - (void)setupSubViews{
     [self setupNavigationViews];
     [self setupTableViews];
+    //refresh data
+    [self refreshData];
 }
 
 - (void)setupNavigationViews{
-    self.navigationItem.title = @"任务下达";
+    self.navigationItem.title = RELEASE_ITEM_NAME;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTask:)];
 }
 
@@ -152,6 +161,10 @@
     //add tap gesture
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
     [self.tableView addGestureRecognizer:tapGesture];
+}
+
+- (void)refreshData{
+    [self slimeRefreshStartRefresh:self.slimeRefreshView];
 }
 
 - (void)tapGestureAction:(UITapGestureRecognizer *)sender{
@@ -177,6 +190,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    [tableView tableViewDisplayWitMsg:@"没有相关记录" ifNecessaryForRowCount:self.taskModelArray.count];
     return 1;
 }
 
@@ -212,7 +226,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return @"任务排班表";
+        return @"   任务排班表";
     }
     return nil;
 }
@@ -256,9 +270,15 @@
     self.reloading = YES;
     self.tableView.showsVerticalScrollIndicator = NO;
     __weak TaskListViewController *weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [self.viewModel getCurrentTaskModelsWithSuccessCompletionHandle:^(BOOL successfully, NSArray *result) {
+        if (successfully) {
+            weakSelf.taskModelArray = result;
+            [weakSelf doneLoadingTableViewData:@(YES)];
+            [weakSelf refreshTableViewData];
+        }
+    } failure:^(BOOL successfully, NSError *error) {
         [weakSelf doneLoadingTableViewData:@(YES)];
-    });
+    }];
 }
 
 - (void)doneLoadingTableViewData:(NSNumber *)isFocusSync {
@@ -272,8 +292,17 @@
     __weak TaskListViewController *weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        weakSelf.tableView.showsInfiniteScrolling = YES;
+        if (weakSelf.taskModelArray.count > 0) {
+            weakSelf.tableView.showsInfiniteScrolling = YES;
+        }else{
+            weakSelf.tableView.showsInfiniteScrolling = NO;
+        }
     });
+}
+
+#pragma mark - TableView ReloadData
+- (void)refreshTableViewData{
+    [self.tableView reloadData];
 }
 
 #pragma mark - SWTableViewCellDelegate

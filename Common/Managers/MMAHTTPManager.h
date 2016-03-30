@@ -27,4 +27,14 @@ typedef void (^TTHTTPDownloadCompletionHandler)(BOOL successfully, NSURL *fileUR
                      type:(NSString *)type
                      success:(TTHTTPRequestSuccessCompletionHandler)success
                      failure:(TTHTTPRequestFailureCompletionHandler)failure;
+
+#pragma mark - Task List
+- (void)getTodayInspectionTaskListWithSiteUrl:(NSString *)siteUrl
+                                      success:(TTHTTPRequestSuccessCompletionHandler)success
+                                      failure:(TTHTTPRequestFailureCompletionHandler)failure;
+
+#pragma mark - MainTain List
+- (void)getMainTainListWithSiteUrl:(NSString *)siteUrl
+                                      success:(TTHTTPRequestSuccessCompletionHandler)success
+                                      failure:(TTHTTPRequestFailureCompletionHandler)failure;
 @end

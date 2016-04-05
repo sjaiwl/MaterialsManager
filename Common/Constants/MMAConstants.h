@@ -14,6 +14,9 @@
 #define TaskListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getTaskList"]
 #define TodayDoneMainTainListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getTodayDoneMaintain"]
 #define NotDoneMainTainListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getNotDoneMaintain"]
+#define WorkTypeStaffListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getWorktypeStaffByWorktypeId"]
+#define AllWorkTypeListUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=getAllWorktype"]
+#define UpdateStaffUrl [SiteDomain stringByAppendingString:@"/admin.do?flag=updateStaffByMid"]
 
 
 //category item id

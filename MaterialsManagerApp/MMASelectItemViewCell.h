@@ -13,6 +13,6 @@ extern NSString *const kMMASelectItemViewCellIdentifier;
 
 @interface MMASelectItemViewCell : UICollectionViewCell
 
-- (void)configCellWithAccountModel:(AccountModel *)model currentStaffID:(NSInteger)currentID;
+- (void)configCellWithAccountModel:(AccountModel *)model currentStaffID:(NSNumber *)currentID;
 
 @end

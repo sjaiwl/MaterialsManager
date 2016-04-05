@@ -24,8 +24,8 @@
 @property (nonatomic, strong) MainTainDetailsViewController *detailsViewController;
 
 //data
-@property (nonatomic, copy) NSArray *todayListArray;
-@property (nonatomic, copy) NSArray *notDoneListArray;
+@property (nonatomic, strong) NSMutableArray *todayListArray;
+@property (nonatomic, strong) NSMutableArray *notDoneListArray;
 @property (nonatomic, strong) MainTainListViewModel *viewModel;
 
 // Sync
@@ -87,16 +87,16 @@
     return _viewModel;
 }
 
-- (NSArray *)todayListArray{
+- (NSMutableArray *)todayListArray{
     if (!_todayListArray) {
-        _todayListArray = [NSArray new];
+        _todayListArray = [NSMutableArray new];
     }
     return _todayListArray;
 }
 
-- (NSArray *)notDoneListArray{
+- (NSMutableArray *)notDoneListArray{
     if (_notDoneListArray) {
-        _todayListArray = [NSArray new];
+        _todayListArray = [NSMutableArray new];
     }
     return _notDoneListArray;
 }
@@ -137,7 +137,7 @@
     __weak MainTainListViewController *weakSelf = self;
     [self.viewModel getCurrentMainTainModelsWithType:0 success:^(BOOL successfully, NSArray *result) {
         if (successfully) {
-            weakSelf.todayListArray = result;
+            weakSelf.todayListArray = result.mutableCopy;
         }
 
     } failure:^(BOOL successfully, NSError *error) {
@@ -146,7 +146,7 @@
 
     [self.viewModel getCurrentMainTainModelsWithType:1 success:^(BOOL successfully, NSArray *result) {
         if (successfully) {
-            weakSelf.notDoneListArray = result;
+            weakSelf.notDoneListArray = result.mutableCopy;
         }
     } failure:^(BOOL successfully, NSError *error) {
 
@@ -228,6 +228,7 @@
     // Create the next view controller.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    __weak MainTainListViewController *weakSelf = self;
     MainTainModel *model = nil;
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         model = self.todayListArray[indexPath.row];
@@ -236,7 +237,14 @@
     }
     
     // Pass the selected object to the new view controller.
-    [self.detailsViewController initWithMainTainModel:model];
+    [self.detailsViewController initWithMainTainModel:model changeActionBlock:^(id selected) {
+        MainTainModel *changeModel = (MainTainModel *)selected;
+        if (selected != nil && changeModel.sid != model.sid) {
+            DLog(@"%@", changeModel);
+            [weakSelf.notDoneListArray replaceObjectAtIndex:indexPath.row withObject:changeModel];
+            [weakSelf refreshTableViewData];
+        }
+    }];
 
     // Push the view controller.
     [self.navigationController pushViewController:self.detailsViewController animated:YES];
@@ -271,9 +279,9 @@
     [self.viewModel getCurrentMainTainModelsWithType:self.segmentedControl.selectedSegmentIndex success:^(BOOL successfully, NSArray *result) {
         if (successfully) {
             if (weakSelf.segmentedControl.selectedSegmentIndex == 0) {
-                weakSelf.todayListArray = result;
+                weakSelf.todayListArray = result.mutableCopy;
             }else{
-                weakSelf.notDoneListArray = result;
+                weakSelf.notDoneListArray = result.mutableCopy;
             }
             [weakSelf doneLoadingTableViewData:@(YES)];
             [weakSelf refreshTableViewData];

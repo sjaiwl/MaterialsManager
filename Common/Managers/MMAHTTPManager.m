@@ -52,6 +52,40 @@
                   failure:failure];
 }
 
+#pragma mark - AllWorktype List
+- (void)getAllWorkTypeListWithSiteUrl:(NSString *)siteUrl
+                              success:(TTHTTPRequestSuccessCompletionHandler)success
+                              failure:(TTHTTPRequestFailureCompletionHandler)failure{
+    [self getForURLString:siteUrl
+               needsToken:NO
+                  success:success
+                  failure:failure];
+}
+
+#pragma mark - AllWorktype List
+- (void)getWorkTypeStaffListWithSiteUrl:(NSString *)siteUrl
+                               workType:(NSNumber *) wid
+                                success:(TTHTTPRequestSuccessCompletionHandler)success
+                                failure:(TTHTTPRequestFailureCompletionHandler)failure{
+    [self postForURLString:siteUrl
+                needsToken:NO
+                parameters:@{@"wid" : wid}
+                   success:success failure:failure];
+}
+
+#pragma mark - update staff
+- (void)updateStaffWithSiteUrl:(NSString *)siteUrl
+                           mid:(NSNumber *)mid
+                           sid:(NSNumber *)sid
+                       success:(TTHTTPRequestSuccessCompletionHandler)success
+                       failure:(TTHTTPRequestFailureCompletionHandler)failure{
+    [self postForURLString:siteUrl
+                needsToken:NO
+                parameters:@{@"mid" : mid, @"sid" : sid}
+                   success:success
+                   failure:failure];
+}
+
 #pragma mark - private method
 - (NSDictionary *)customHTTPHeadersIfNeedsToken:(BOOL)needsToken
 {

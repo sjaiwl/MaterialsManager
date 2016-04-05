@@ -31,9 +31,9 @@ NSString *const kMMASelectItemViewCellIdentifier = @"kMMASelectItemViewCellIdent
 }
 
 - (void)configCellWithAccountModel:(AccountModel *)model
-                    currentStaffID:(NSInteger)currentID{
+                    currentStaffID:(NSNumber *)currentID{
     self.nameLabel.text = model.sname;
-    if (model.sid.integerValue == currentID) {
+    if (model.sid == currentID) {
         self.selected = YES;
     }else{
         self.selected = NO;

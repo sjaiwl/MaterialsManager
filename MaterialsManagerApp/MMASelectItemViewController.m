@@ -10,6 +10,8 @@
 #import "MMAColors.h"
 #import "MMASelectItemViewCell.h"
 #import "MMAConfig.h"
+#import "ItemListViewModel.h"
+#import "AccountModel.h"
 
 @interface MMASelectItemViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
@@ -18,20 +20,27 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 //data
-@property (nonatomic, assign) NSInteger currentStaffID;
+@property (nonatomic, strong) NSNumber* currentStaffID;
+@property (nonatomic, strong) NSNumber* currentWorkTypeID;
+@property (nonatomic, strong) NSIndexPath *currentSelectIndexPath;
+@property (nonatomic, strong) AccountModel *currentSelectAccount;
 @property (nonatomic, copy) MMASelectItemViewCancelHandle cancelHandle;
 @property (nonatomic, copy) MMASelectItemViewDoneHandle doneHandle;
 
 @property (nonatomic ,copy) NSArray *staffArray;
+
+@property (nonatomic, strong)ItemListViewModel *viewModel;
 @end
 
 @implementation MMASelectItemViewController
 
-- (instancetype)initWithCurrentSid:(NSInteger)sid cancelHandle:(MMASelectItemViewCancelHandle)cancelHandle doneHandle:(MMASelectItemViewDoneHandle)doneHandle{
+- (instancetype)initWithCurrentSid:(NSNumber *)sid workTypeID:(NSNumber *)wid  cancelHandle:(MMASelectItemViewCancelHandle)cancelHandle doneHandle:(MMASelectItemViewDoneHandle)doneHandle{
     if (self = [super init]) {
         _currentStaffID = sid;
+        _currentWorkTypeID = wid;
         _cancelHandle = cancelHandle;
         _doneHandle = doneHandle;
+        [self getDataSource];
     }
     return self;
 }
@@ -47,6 +56,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Accessor
+- (ItemListViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [ItemListViewModel sharedViewModel];
+    }
+    return _viewModel;
+}
+
+#pragma mark - set up
 - (void)sutupSubViews{
     [self setupTopView];
     [self setupCollectionView];
@@ -69,6 +87,12 @@
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([MMASelectItemViewCell class]) bundle:nil] forCellWithReuseIdentifier:kMMASelectItemViewCellIdentifier];
 }
 
+#pragma mark - get data
+- (void)getDataSource{
+    [self.viewModel reloadWorkTypeInformation];
+    self.staffArray = [self.viewModel getCurentWorkTypeStaffByWID:self.currentWorkTypeID];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -85,18 +109,21 @@
 }
 //设置item数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 3;
-//    return self.staffArray.count;
+    return self.staffArray.count;
 }
 //设置cell
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MMASelectItemViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMMASelectItemViewCellIdentifier forIndexPath:indexPath];
     //config cell
+    AccountModel *model = self.staffArray[indexPath.row];
+    [cell configCellWithAccountModel:model currentStaffID:self.currentStaffID];
     cell.selectedBackgroundView = [[UIView alloc] init];
     cell.selectedBackgroundView.backgroundColor = MMA_BLACK(0.5);
-
-    
+    if (model.sid == self.currentStaffID) {
+        self.currentSelectIndexPath = indexPath;
+        self.currentSelectAccount = model;
+    }
     return cell;
 }
 #pragma mark --UICollectionViewDelegateFlowLayout
@@ -114,7 +141,13 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@",indexPath);
+    if (self.currentSelectIndexPath != indexPath) {
+        NSLog(@"%@",self.currentSelectIndexPath);
+        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:self.currentSelectIndexPath];
+        cell.selected = NO;
+        self.currentSelectIndexPath = indexPath;
+        self.currentSelectAccount = self.staffArray[indexPath.row];
+    }
 }
 
 //返回这个UICollectionView是否可以被选择
@@ -132,11 +165,15 @@
     return self.view.frame.size.height;
 }
 
+- (void)refreshCurrentViewData{
+    [self.collectionView reloadData];
+}
+
 - (IBAction)cancelAction:(UIButton *)sender {
     self.cancelHandle();
 }
 
 - (IBAction)doneAction:(UIButton *)sender {
-    self.doneHandle(self.currentStaffID);
+    self.doneHandle(self.currentSelectAccount);
 }
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMABlocks.h"
 @class MainTainModel;
 
 @interface MainTainDetailsViewController : UITableViewController
 
-- (void)initWithMainTainModel:(MainTainModel *)mainTainModel;
+- (void)initWithMainTainModel:(MainTainModel *)mainTainModel changeActionBlock:(TTChangeActionBlock)changeActionBlock;
 
 @end

@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^MMASelectItemViewCancelHandle)();
-typedef void(^MMASelectItemViewDoneHandle)(NSInteger sid);
+typedef void(^MMASelectItemViewDoneHandle)(id sid);
 
 @interface MMASelectItemViewController : UIViewController
-- (instancetype)initWithCurrentSid:(NSInteger)sid cancelHandle:(MMASelectItemViewCancelHandle)cancelHandle doneHandle:(MMASelectItemViewDoneHandle)doneHandle;
+- (instancetype)initWithCurrentSid:(NSNumber *)sid workTypeID:(NSNumber *)wid cancelHandle:(MMASelectItemViewCancelHandle)cancelHandle doneHandle:(MMASelectItemViewDoneHandle)doneHandle;
 - (CGFloat)heightForDisplay;
+
+- (void)refreshCurrentViewData;
 
 @end

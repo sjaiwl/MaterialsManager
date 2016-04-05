@@ -10,6 +10,13 @@
 
 @implementation MainTainModel
 
+- (void)initializeDefaultPropertyValues{
+    [super initializeDefaultPropertyValues];
+    if (!self.wid) {
+        self.wid = 0;
+    }
+}
+
 #pragma mark - MTLJSONSerializing
 + (NSDictionary *)JSONKeyPathsByPropertyKey{
     NSMutableDictionary *dict = [super JSONKeyPathsByPropertyKey].mutableCopy;
@@ -18,6 +25,7 @@
        @"mid" : @"mid",
        @"tdid" : @"tdid",
        @"sid" : @"sid",
+       @"wid" : @"wid",
        @"sname" : @"sname",
        @"mrepairtime" : @"mrepairtime",
        @"mmaintaintime" : @"mmaintaintime",

@@ -59,6 +59,8 @@
 		C24C5DC31C91A6FF007A4FAB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DC21C91A6FF007A4FAB /* MBProgressHUD.m */; };
 		C24C5DC61C91C526007A4FAB /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DC51C91C526007A4FAB /* UIView+Toast.m */; };
 		C24C5DC91C92B362007A4FAB /* TaskListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C24C5DC81C92B362007A4FAB /* TaskListViewModel.m */; };
+		C2544F071CB0052400C7690C /* WorkTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2544F061CB0052400C7690C /* WorkTypeModel.m */; };
+		C2544F0A1CB0067900C7690C /* ItemListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2544F091CB0067900C7690C /* ItemListViewModel.m */; };
 		C256684C1C8C0E9F009F370E /* MMAFont.m in Sources */ = {isa = PBXBuildFile; fileRef = C256684B1C8C0E9F009F370E /* MMAFont.m */; };
 		C25668671C8C0F20009F370E /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C256684F1C8C0F20009F370E /* MASCompositeConstraint.m */; };
 		C25668681C8C0F20009F370E /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C25668521C8C0F20009F370E /* MASConstraint.m */; };
@@ -305,6 +307,10 @@
 		C24C5DC51C91C526007A4FAB /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		C24C5DC71C92B362007A4FAB /* TaskListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewModel.h; sourceTree = "<group>"; };
 		C24C5DC81C92B362007A4FAB /* TaskListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewModel.m; sourceTree = "<group>"; };
+		C2544F051CB0052400C7690C /* WorkTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTypeModel.h; sourceTree = "<group>"; };
+		C2544F061CB0052400C7690C /* WorkTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTypeModel.m; sourceTree = "<group>"; };
+		C2544F081CB0067900C7690C /* ItemListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemListViewModel.h; sourceTree = "<group>"; };
+		C2544F091CB0067900C7690C /* ItemListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemListViewModel.m; sourceTree = "<group>"; };
 		C256684A1C8C0E9F009F370E /* MMAFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAFont.h; sourceTree = "<group>"; };
 		C256684B1C8C0E9F009F370E /* MMAFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAFont.m; sourceTree = "<group>"; };
 		C256684E1C8C0F20009F370E /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -828,6 +834,8 @@
 				C24C5DC81C92B362007A4FAB /* TaskListViewModel.m */,
 				C2BE61211CABC166000C2259 /* MainTainListViewModel.h */,
 				C2BE61221CABC166000C2259 /* MainTainListViewModel.m */,
+				C2544F081CB0067900C7690C /* ItemListViewModel.h */,
+				C2544F091CB0067900C7690C /* ItemListViewModel.m */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -1031,6 +1039,8 @@
 				C24C5D9C1C9188B3007A4FAB /* TaskModel.m */,
 				C2BE611E1CABBE80000C2259 /* MainTainModel.h */,
 				C2BE611F1CABBE80000C2259 /* MainTainModel.m */,
+				C2544F051CB0052400C7690C /* WorkTypeModel.h */,
+				C2544F061CB0052400C7690C /* WorkTypeModel.m */,
 				C25668951C8C4AE5009F370E /* CategoryModel.h */,
 				C25668961C8C4AE5009F370E /* CategoryModel.m */,
 				C27447311C8D5ACD0027A515 /* UserSettingModel.h */,
@@ -1489,6 +1499,7 @@
 				C256684C1C8C0E9F009F370E /* MMAFont.m in Sources */,
 				C2BE61271CABD32F000C2259 /* MainTainTableViewCell.m in Sources */,
 				C2BE612C1CABF75A000C2259 /* MainTainDetailsViewController.m in Sources */,
+				C2544F071CB0052400C7690C /* WorkTypeModel.m in Sources */,
 				C274472D1C8D4EFC0027A515 /* UINavigationBar+Utils.m in Sources */,
 				C274473A1C8D778E0027A515 /* TaskListViewController.m in Sources */,
 				C22DE8BC1C9845C90069B78D /* UIViewController+RESideMenu.m in Sources */,
@@ -1524,6 +1535,7 @@
 				C274473F1C8D7D7C0027A515 /* TaskTableViewCell.m in Sources */,
 				C22DE9211C9986060069B78D /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				C2CCF7941C90015F00F806CD /* MMAHTTPManager.m in Sources */,
+				C2544F0A1CB0067900C7690C /* ItemListViewModel.m in Sources */,
 				C256686D1C8C0F20009F370E /* NSArray+MASAdditions.m in Sources */,
 				C28A0E2D1C8AFD4A0098614F /* SDWebImageManager.m in Sources */,
 				C28A0E281C8AFD4A0098614F /* SDImageCache.m in Sources */,

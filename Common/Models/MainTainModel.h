@@ -29,5 +29,7 @@
 @property (nonatomic, strong) NSDate *mrepairtime;
 //状态
 @property (nonatomic, copy) NSString *mstatus;
+//工种id
+@property (nonatomic, assign) NSInteger wid;
 
 @end

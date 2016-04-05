@@ -17,6 +17,7 @@ typedef void (^TTResultAndDifferBlock)(BOOL successfully, BOOL hasChanges);
 typedef void (^TTResultAndErrorBlock)(BOOL successfully, NSError *error);
 
 typedef void (^TTTimePickerCompletionBlock)(NSDate *newTime);
+typedef void (^TTChangeActionBlock)(id selected);
 
 @interface MMABlocks : NSObject
 

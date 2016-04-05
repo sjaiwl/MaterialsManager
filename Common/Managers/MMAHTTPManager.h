@@ -37,4 +37,22 @@ typedef void (^TTHTTPDownloadCompletionHandler)(BOOL successfully, NSURL *fileUR
 - (void)getMainTainListWithSiteUrl:(NSString *)siteUrl
                                       success:(TTHTTPRequestSuccessCompletionHandler)success
                                       failure:(TTHTTPRequestFailureCompletionHandler)failure;
+
+#pragma mark - AllWorktype List
+- (void)getAllWorkTypeListWithSiteUrl:(NSString *)siteUrl
+                           success:(TTHTTPRequestSuccessCompletionHandler)success
+                           failure:(TTHTTPRequestFailureCompletionHandler)failure;
+
+#pragma mark - AllWorktype List
+- (void)getWorkTypeStaffListWithSiteUrl:(NSString *)siteUrl
+                               workType:(NSNumber *) wid
+                              success:(TTHTTPRequestSuccessCompletionHandler)success
+                              failure:(TTHTTPRequestFailureCompletionHandler)failure;
+
+#pragma mark - update staff
+- (void)updateStaffWithSiteUrl:(NSString *)siteUrl
+                 mid:(NSNumber *)mid
+                 sid:(NSNumber *)sid
+                  success:(TTHTTPRequestSuccessCompletionHandler)success
+                  failure:(TTHTTPRequestFailureCompletionHandler)failure;
 @end

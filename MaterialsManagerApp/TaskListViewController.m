@@ -225,7 +225,7 @@
 //}
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
+    if (section == 0 && self.taskModelArray.count > 0) {
         return @"   任务排班表";
     }
     return nil;
@@ -292,16 +292,17 @@
     __weak TaskListViewController *weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        if (weakSelf.taskModelArray.count > 0) {
-            weakSelf.tableView.showsInfiniteScrolling = YES;
-        }else{
-            weakSelf.tableView.showsInfiniteScrolling = NO;
-        }
+        [weakSelf refreshTableViewData];
     });
 }
 
 #pragma mark - TableView ReloadData
 - (void)refreshTableViewData{
+    if (self.taskModelArray.count > 0) {
+        self.tableView.showsInfiniteScrolling = YES;
+    }else{
+        self.tableView.showsInfiniteScrolling = NO;
+    }
     [self.tableView reloadData];
 }
 

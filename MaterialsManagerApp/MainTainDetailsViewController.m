@@ -18,6 +18,12 @@
 #import "MMAConfig.h"
 #import "MMASheetView.h"
 #import "MMASelectItemViewController.h"
+#import "ItemListViewModel.h"
+#import "AccountModel.h"
+#import "MBProgressHUD.h"
+#import "MMAHTTPManager.h"
+#import "MMAConstants.h"
+#import "MMALogs.h"
 
 @interface MainTainDetailsViewController ()<MMATableViewFootViewDelegate>
 
@@ -27,9 +33,19 @@
 
 @property (nonatomic, strong) MainTainModel *revisedTask;
 
+@property (nonatomic, copy) TTChangeActionBlock changeActionBlock;
+
+@property (nonatomic, assign, getter=isNeedChange) BOOL needChange;
+
 //sheet view
 @property (nonatomic, strong) MMASheetView *sheetView;
 @property (nonatomic, strong) MMASelectItemViewController *actionActivityViewController;
+
+
+@property (nonatomic, strong) MBProgressHUD *toastIndictorManager;
+@property (nonatomic, assign, getter=isIndictorShowing) BOOL indictorShowing;
+
+@property (nonatomic, strong) MMAHTTPManager *httpManager;
 
 @end
 
@@ -50,6 +66,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (self.isNeedChange) {
+        self.changeActionBlock(self.revisedTask);
+    }else{
+        self.changeActionBlock(nil);
+    }
+}
+
 - (MMATableViewFootView *)footView{
     if (!_footView) {
         _footView = [[MMATableViewFootView alloc] initWithFrame:CGRectMake(0, 0, CURRENT_SCREEN_WIDTH, 50)];
@@ -57,10 +82,18 @@
     return _footView;
 }
 
+- (MMAHTTPManager *)httpManager{
+    if (!_httpManager) {
+        _httpManager = [MMAHTTPManager sharedManager];
+    }
+    return _httpManager;
+}
+
 #pragma mark - setup subViews
 - (void)setupSubViews{
     [self setupNavigationViews];
     [self setupTableViews];
+    [self setupItemDataSource];
 }
 
 - (void)setupNavigationViews{
@@ -73,10 +106,15 @@
     [self.tableView registerClass:[MMATableViewHeaderFooterView class]forHeaderFooterViewReuseIdentifier:kMMATableViewHeaderFooterViewReuseIdentifier];
 }
 
+- (void)setupItemDataSource{
+    [[ItemListViewModel sharedViewModel] reloadWorkTypeInformation];
+}
+
 //init
-- (void)initWithMainTainModel:(MainTainModel *)mainTainModel{
+- (void)initWithMainTainModel:(MainTainModel *)mainTainModel changeActionBlock:(TTChangeActionBlock)changeActionBlock{
     self.originModel = mainTainModel;
     self.revisedTask = mainTainModel.copy;
+    self.changeActionBlock = changeActionBlock;
     [self addFootViewIfNeeded];
     [self.tableView reloadData];
 }
@@ -85,8 +123,10 @@
     if ([self.revisedTask.mstatus isEqualToString:@"0"]) {
         self.footView.delegate = self;
         self.tableView.tableFooterView = self.footView;
+        self.needChange = YES;
     }else{
         self.tableView.tableFooterView = nil;
+        self.needChange = NO;
     }
 }
 
@@ -256,11 +296,19 @@
 - (void)didClickChangeStaffButton:(UIButton *)button{
     __weak MainTainDetailsViewController *weakSelf = self;
 
-    self.actionActivityViewController = [[MMASelectItemViewController alloc] initWithCurrentSid:self.revisedTask.sid cancelHandle:^{
+    self.actionActivityViewController = [[MMASelectItemViewController alloc] initWithCurrentSid:@(self.revisedTask.sid) workTypeID:@(self.revisedTask.wid) cancelHandle:^{
         [weakSelf.sheetView dismiss];
-    } doneHandle:^(NSInteger sid) {
+    } doneHandle:^(id sid) {
+        //to do
+        NSLog(@"%@", sid);
+        AccountModel *account = (AccountModel *)sid;
+        if (account.sid.integerValue != weakSelf.revisedTask.sid) {
+            [weakSelf updateMainTainStaffWithStaff:sid];
+        }
         [weakSelf.sheetView dismiss];
     }];
+
+    [self.actionActivityViewController refreshCurrentViewData];
 
     self.sheetView =
     [[MMASheetView alloc]
@@ -269,6 +317,51 @@
      sheetType:TTSheetViewTypeBottom];
     [self.sheetView show];
 
+}
+
+#pragma mark - update staff
+- (void)updateMainTainStaffWithStaff:(AccountModel *)staff{
+    __weak MainTainDetailsViewController *weakSelf = self;
+    [self showToastWithIndicatorView];
+    [self.httpManager updateStaffWithSiteUrl:UpdateStaffUrl mid:@(self.revisedTask.mid) sid:staff.sid success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        DLog(@"%@",responseObject);
+        [weakSelf hideToastWithIndicatorView];
+        [weakSelf showToastWithMessage:@"修改成功"];
+        [weakSelf updateTableViewDataWithStaff:staff];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        DLog(@"%@", error);
+        [weakSelf hideToastWithIndicatorView];
+    }];
+}
+
+#pragma mark - toast method
+- (void)showToastWithMessage:(NSString *)string{
+    MBProgressHUD *toast = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    toast.mode = MBProgressHUDModeText;
+    toast.label.text = string;
+    [toast hideAnimated:YES afterDelay:2];
+}
+
+- (void)showToastWithIndicatorView{
+    if (!self.isIndictorShowing) {
+        self.indictorShowing = YES;
+        self.toastIndictorManager = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.toastIndictorManager.mode = MBProgressHUDModeIndeterminate;
+    }
+}
+
+- (void)hideToastWithIndicatorView{
+    if (self.isIndictorShowing) {
+        self.indictorShowing = NO;
+        [self.toastIndictorManager hideAnimated:YES];
+    }
+}
+
+#pragma mark - update tableview method
+- (void)updateTableViewDataWithStaff:(AccountModel *)staff{
+    self.revisedTask.sid = staff.sid.integerValue;
+    self.revisedTask.sname = staff.sname;
+    [self.tableView reloadData];
 }
 
 @end

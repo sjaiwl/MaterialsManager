@@ -65,7 +65,7 @@ NSInteger const kMMAMainTainTableViewCellHeight = 95;
     self.peopleNameLabel.text = mainTainModel.sname;
     [self changeLabelTextColorByStatus:mainTainModel.mstatus];
     self.derroritemsLabel.text = mainTainModel.tderroritems;
-    self.derrordescribeLabel.text = mainTainModel.tderrordescribe;
+    self.derrordescribeLabel.text = [mainTainModel.tderrordescribe hasPrefix:@"null"] ? @"无" : mainTainModel.tderrordescribe;
     self.repairtimeLabel.text = mainTainModel.mrepairtime.stringForTimeYYYYMMDD;
 }
 

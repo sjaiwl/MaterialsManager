@@ -338,7 +338,9 @@
 - (void)showToastWithMessage:(NSString *)string{
     MBProgressHUD *toast = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     toast.mode = MBProgressHUDModeText;
+    toast.bezelView.backgroundColor = MMA_BLACK(1);
     toast.label.text = string;
+    toast.label.textColor = MMA_WHITE(1);
     [toast hideAnimated:YES afterDelay:2];
 }
 

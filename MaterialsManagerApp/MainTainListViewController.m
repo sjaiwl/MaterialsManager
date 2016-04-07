@@ -95,8 +95,8 @@
 }
 
 - (NSMutableArray *)notDoneListArray{
-    if (_notDoneListArray) {
-        _todayListArray = [NSMutableArray new];
+    if (!_notDoneListArray) {
+        _notDoneListArray = [NSMutableArray new];
     }
     return _notDoneListArray;
 }
@@ -138,18 +138,20 @@
     [self.viewModel getCurrentMainTainModelsWithType:0 success:^(BOOL successfully, NSArray *result) {
         if (successfully) {
             weakSelf.todayListArray = result.mutableCopy;
+            [weakSelf refreshTableViewData];
         }
 
     } failure:^(BOOL successfully, NSError *error) {
-
+        DLog(@"%@",error);
     }];
 
     [self.viewModel getCurrentMainTainModelsWithType:1 success:^(BOOL successfully, NSArray *result) {
         if (successfully) {
             weakSelf.notDoneListArray = result.mutableCopy;
+            [weakSelf refreshTableViewData];
         }
     } failure:^(BOOL successfully, NSError *error) {
-
+        DLog(@"%@",error);
     }];
 }
 
@@ -319,10 +321,12 @@
 }
 
 - (void)showTodayDoneMaintainListView{
+    DLog(@"%ld",self.todayListArray.count);
     [self refreshTableViewData];
 }
 
 - (void)showNotDoneMaintainListView{
+    DLog(@"%ld",self.notDoneListArray.count);
     [self refreshTableViewData];
 }
 
